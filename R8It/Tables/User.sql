@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[User]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[RoleId] INT NOT NULL DEFAULT 1,
+	[Nickname] VARCHAR(50) NOT NULL UNIQUE,
+	[Birthdate] DATETIME2 NOT NULL,
+	[Email] VARCHAR(100) NOT NULL UNIQUE,
+	[CountryId] INT NOT NULL,
+	[Password] VARBINARY(MAX) NOT NULL
+
+
+	CONSTRAINT [FK_User_Country] FOREIGN KEY ([CountryId]) REFERENCES [Country]([Id]),
+	CONSTRAINT [FK_User_Role] FOREIGN KEY ([RoleId]) REFERENCES [Role]([Id])
+
+)
