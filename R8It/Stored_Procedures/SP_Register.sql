@@ -11,4 +11,4 @@ AS
 	@email,
 	dbo.Udf_Hash_Password(@password, @email),
 	@countryid)
-RETURN 0
+RETURN 1
