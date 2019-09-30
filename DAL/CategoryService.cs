@@ -26,7 +26,6 @@ namespace DAL
         }
         public CategoryService()
         {
-            Console.WriteLine("UserService ctor");
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
         #endregion

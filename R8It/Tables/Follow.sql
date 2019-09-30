@@ -5,5 +5,6 @@
 
 
 	CONSTRAINT [FK_Follower_User] FOREIGN KEY ([FollowerId]) REFERENCES [User]([Id]),
-	CONSTRAINT [FK_Followed_User] FOREIGN KEY ([FollowedId]) REFERENCES [User]([Id])
+	CONSTRAINT [FK_Followed_User] FOREIGN KEY ([FollowedId]) REFERENCES [User]([Id]), 
+    CONSTRAINT [CK_Follow_Unique] UNIQUE (FollowerId, FollowedId)
 )
