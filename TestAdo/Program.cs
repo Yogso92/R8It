@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
 
 namespace TestAdo
@@ -20,9 +21,11 @@ namespace TestAdo
                                 .AddSingleton<UserService>()
                                 .AddSingleton<CategoryService>()
                                 .AddSingleton<FollowService>()
-                                .AddSingleton<RatingService>()
+                                .AddSingleton<RatingTypeService>()
                                 .AddSingleton<SubscriptionService>()
                                 .AddSingleton<RateChoiceService>()
+                                .AddSingleton<UploadService>()
+                                .AddSingleton<VoteService>()
                                 .BuildServiceProvider();
 
 
@@ -83,7 +86,9 @@ namespace TestAdo
 
             #endregion
             #region RatingServiceTest OK
-            //RatingService service = serviceProvider.GetService<RatingService>();
+            //RatingTypeService service = serviceProvider.GetService<RatingTypeService>();
+            //service.Delete(1);
+
             //DbRatingType ratingType = new DbRatingType
             //{
             //    Name = "Yes or No",
@@ -122,14 +127,91 @@ namespace TestAdo
             //}
             #endregion
             #region RateChoiceService
-            // Service service = serviceProvider.GetService<Service>();
+
+            //RateChoiceService service = serviceProvider.GetService<RateChoiceService>();
+            //DbRateChoice choice = new DbRateChoice
+            //{
+            //    RatingTypeId = 2,
+            //    Text = "Yes",
+            //    Value = 10
+            //};
+            //try
+            //{
+            //    choice = service.Insert(choice);
+            //    choice = service.Insert(choice);
+            //    Console.WriteLine("insert pas ok");
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("insert ok");
+            //}
+
+            //Console.WriteLine(choice.Id);
+            //foreach(DbRateChoice choice in service.GetChoices(1))
+            //{
+            //    Console.WriteLine($"{choice.Text} : {choice.Value}");
+            //}
 
             #endregion
-            #region Service
-            RateChoiceService service = serviceProvider.GetService<RateChoiceService>();
-            RateChoiceService ss = serviceProvider.GetService<RateChoiceService>();
-            
+            #region UploadService OK
+            //UploadService service = serviceProvider.GetService<UploadService>();
+            //DbUpload upload = new DbUpload
+            //{
+            //    Context = "Yolo",
+            //    UserId = 1,
+            //    CategoryId = 1,
+            //    File = File.ReadAllBytes("C:/test.png"),
+            //    RatingTypeId = 2,
+            //    Anonymous = false,
+            //    LimitDate = DateTime.Now.AddDays(7),
+            //    UploadDate = DateTime.Now
+            //};
 
+            //upload = service.Insert(upload);
+            //Console.WriteLine(upload.Id);
+            //Console.WriteLine(upload.LimitDate);
+
+            //DbUpload upload = service.Get(1);
+            //File.WriteAllBytes("D:/yolo.png", upload.File);
+
+            //foreach(DbUpload upload1 in service.GetAll())
+            //{
+            //    Console.WriteLine(upload1.Context);
+            //}
+            //foreach(DbUpload upload2 in service.GetAllFromUser(1))
+            //{
+            //    Console.WriteLine(upload2.Context);
+            //}
+            #endregion
+            #region VoteService OK
+            //VoteService service = serviceProvider.GetService<VoteService>();
+            //DbVote vote = new DbVote
+            //{
+            //    UserId = 4,
+            //    UploadId = 1,
+            //    RateChoiceId = 11
+            //};
+
+            //try
+            //{
+            //    vote = service.Insert(vote);
+            //    vote = service.Insert(vote);
+            //    Console.WriteLine("insert pas ok");
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("insert ok");
+            //}
+            //Console.WriteLine(vote.Id);
+
+            //foreach (DbVote item in service.GetVotes(1))
+            //{
+            //    Console.WriteLine(item.UserId);
+            //}
+            //foreach(DbVote item in service.GetAll())
+            //{
+            //    Console.WriteLine(  item.RateChoiceId);
+            //}
 
             #endregion
             Console.ReadKey();

@@ -8,23 +8,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RatingService
+    public class RatingTypeService
     {
         #region singleton pattern
         private Connection _connection;
-        private static RatingService _instance;
-        public static RatingService Instance
+        private static RatingTypeService _instance;
+        public static RatingTypeService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new RatingService();
+                    return _instance = new RatingTypeService();
                 }
                 return _instance;
             }
         }
-        public RatingService()
+        public RatingTypeService()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

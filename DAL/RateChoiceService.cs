@@ -29,6 +29,12 @@ namespace DAL
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
         #endregion
+        public DbRateChoice Get(int id)
+        {
+            Command cmd = new Command("SELECT * FROM RateChoice WHERE Id = @id");
+            cmd.AddParameter("id", id);
+            return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbRateChoice>).FirstOrDefault();
+        }
         public IEnumerable<DbRateChoice> GetChoices(int ratingTypeId)
         {
             Command cmd = new Command("SELECT * FROM RateChoice WHERE RatingTypeId = @ratingtypeid");
@@ -38,7 +44,7 @@ namespace DAL
 
         public DbRateChoice Insert(DbRateChoice choice)
         {
-            Command cmd = new Command("INSERT INTO RateChoice (RatingTypeId, Text, Value) OUTPUT inserted.* VALUES (@ratingtypeid, @text, @value)");
+            Command cmd = new Command("INSERT INTO RateChoice (RatingTypeId, Text, [Value]) OUTPUT inserted.* VALUES (@ratingtypeid, @text, @value)");
             cmd.SetParameters(choice);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbRateChoice>).FirstOrDefault() ;
         }
@@ -50,7 +56,7 @@ namespace DAL
         }
         public DbRateChoice Update(DbRateChoice choice)
         {
-            Command cmd = new Command("UPDATE RateChoice SET RatingTypeId = @ratingtypeid, Text = @text, Value = value OUTPUT inserted.* WHERE Id = @id");
+            Command cmd = new Command("UPDATE RateChoice SET RatingTypeId = @ratingtypeid, Text = @text, [Value] = @value OUTPUT inserted.* WHERE Id = @id");
             cmd.SetParameters(choice);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbRateChoice>).FirstOrDefault();
         }

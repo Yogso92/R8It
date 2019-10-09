@@ -8,6 +8,7 @@
 
 	CONSTRAINT [FK_Vote_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
 	CONSTRAINT [FK_Vote_Upload] FOREIGN KEY ([UploadId]) REFERENCES [Upload]([Id]),
-	CONSTRAINT [FK_Vote_RateChoice] FOREIGN KEY ([RateChoiceId]) REFERENCES [RateChoice]([Id])
+	CONSTRAINT [FK_Vote_RateChoice] FOREIGN KEY ([RateChoiceId]) REFERENCES [RateChoice]([Id]),
+	CONSTRAINT [UK_Vote_Unique] UNIQUE (UserId, UploadId)
 
 )

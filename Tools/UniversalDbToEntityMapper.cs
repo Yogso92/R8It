@@ -36,6 +36,10 @@ namespace Toolbox.Mappers
                 {
                     prop.SetValue(retour, null);
                 }
+                catch (InvalidCastException)
+                {
+                    prop.SetValue(retour, (byte[])reader[prop.Name]);
+                }
                 
             }
             return retour;

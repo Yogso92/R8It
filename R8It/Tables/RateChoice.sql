@@ -5,6 +5,7 @@
 	[Text] VARCHAR(20) NOT NULL, 
 	[Value] INT NOT NULL,
 
-	CONSTRAINT [FK_RateChoice_RateType] FOREIGN KEY ([RatingTypeId]) REFERENCES [RatingType]([Id])
+	CONSTRAINT [FK_RateChoice_RateType] FOREIGN KEY ([RatingTypeId]) REFERENCES [RatingType]([Id]) ON DELETE CASCADE,
+	CONSTRAINT [UK_RateChoice_Value] UNIQUE (RatingTypeId, [Value])
 
 )
