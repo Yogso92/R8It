@@ -57,6 +57,8 @@ namespace DomainEntities
             {
                 //TODO handle edit
                 _Role = value;
+                RoleId = value.Id;
+                Provider.GetService<UserService>().Update(this.Map<DbUser>());
             } 
         }
         private IEnumerable<User> _Following;
