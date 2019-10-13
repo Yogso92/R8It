@@ -56,6 +56,12 @@ namespace DAL
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUser>);
 
         }
+        public bool Update(DbUser user)
+        {
+            Command cmd = new Command("UPDATE [User] SET RoleId = @roleid, Nickname = @nickname, Birthdate = @birthdate, CountryId = @countryid WHERE Id = @id ");
+            cmd.SetParameters(user);
+            return _connection.ExecuteNonQuery(cmd) == 1;
+        }
 
     }
 }

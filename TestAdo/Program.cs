@@ -14,29 +14,29 @@ namespace TestAdo
     {
         static void Main(string[] args)
         {
-            
+
             #region test DALService OK
-            //first call should cw the add of CategoryService to the provider
-            CategoryService service = Provider.GetService<CategoryService>();
-            RateChoiceService service1 = Provider.GetService<RateChoiceService>();
+            ////first call should cw the add of CategoryService to the provider
+            //CategoryService service = Provider.GetService<CategoryService>();
+            //RateChoiceService service1 = Provider.GetService<RateChoiceService>();
 
-            RateChoiceService service2 = Provider.GetService<RateChoiceService>();
-            // testing multiple call to provider
-            //should NOT cw the add of CategoryService to the provider
-            testSingleton test = new testSingleton();
-            testSingleton test2 = new testSingleton();
+            //RateChoiceService service2 = Provider.GetService<RateChoiceService>();
+            //// testing multiple call to provider
+            ////should NOT cw the add of CategoryService to the provider
+            //testSingleton test = new testSingleton();
+            //testSingleton test2 = new testSingleton();
 
-            //testing the actual service
-            foreach (DbCategory category in service.GetAll())
-            {
-                Console.WriteLine(category.Name);
-            }
+            ////testing the actual service
+            //foreach (DbCategory category in service.GetAll())
+            //{
+            //    Console.WriteLine(category.Name);
+            //}
 
-            
+
 
             #endregion
-            //TODO register in asp app
-            #region test USerService OK
+            #region test USerService 
+            //TODO Update
             //UserService service = serviceProvider.GetService<UserService>();
             //DbUser testReceive = service.Login("test@test.com", "testpw");
             //Console.WriteLine(testReceive.Nickname);
