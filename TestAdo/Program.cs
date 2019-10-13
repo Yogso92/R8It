@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
+using Provider = DAL.DALService;
 
 namespace TestAdo
 {
@@ -13,22 +14,28 @@ namespace TestAdo
     {
         static void Main(string[] args)
         {
-            //register factory as Core does not natively supports System.Data.SqlClient
+            
+            #region test DALService OK
+            //first call should cw the add of CategoryService to the provider
+            CategoryService service = Provider.GetService<CategoryService>();
+            RateChoiceService service1 = Provider.GetService<RateChoiceService>();
 
+            RateChoiceService service2 = Provider.GetService<RateChoiceService>();
+            // testing multiple call to provider
+            //should NOT cw the add of CategoryService to the provider
+            testSingleton test = new testSingleton();
+            testSingleton test2 = new testSingleton();
+
+            //testing the actual service
+            foreach (DbCategory category in service.GetAll())
+            {
+                Console.WriteLine(category.Name);
+            }
+
+            
+
+            #endregion
             //TODO register in asp app
-            DbProviderFactories.RegisterFactory("System.Data.SqlClient", System.Data.SqlClient.SqlClientFactory.Instance);
-            ServiceProvider serviceProvider = new ServiceCollection()
-                                .AddSingleton<UserService>()
-                                .AddSingleton<CategoryService>()
-                                .AddSingleton<FollowService>()
-                                .AddSingleton<RatingTypeService>()
-                                .AddSingleton<SubscriptionService>()
-                                .AddSingleton<RateChoiceService>()
-                                .AddSingleton<UploadService>()
-                                .AddSingleton<VoteService>()
-                                .BuildServiceProvider();
-
-
             #region test USerService OK
             //UserService service = serviceProvider.GetService<UserService>();
             //DbUser testReceive = service.Login("test@test.com", "testpw");

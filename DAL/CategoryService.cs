@@ -19,6 +19,7 @@ namespace DAL
             {
                 if (_instance == null)
                 {
+                    Console.WriteLine("creating CategoryService");
                     return _instance = new CategoryService();
                 }
                 return _instance;
