@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RateChoiceService
+    public class RateChoiceService: IService<DbRateChoice>
     {
         #region singleton pattern
         private Connection _connection;

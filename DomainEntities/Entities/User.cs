@@ -31,15 +31,9 @@ namespace DomainEntities
                 }
                 return Country;
             }
-            internal set
-            //{
-            //    _Country = value;
-            //}
-            //TODO: handle edits here or in use cases?
+            set
             {
                 _Country = value;
-                CountryId = value.Id;
-                Provider.GetService<UserService>().Update(this.Map<DbUser>());
             }
         }
         private Role _Role;

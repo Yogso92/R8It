@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class VoteService
+    public class VoteService: IService<DbVote>
     {
         #region singleton pattern
         private Connection _connection;

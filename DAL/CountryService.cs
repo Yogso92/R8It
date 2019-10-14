@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class CountryService
+    public class CountryService : IService<DbCountry>
     {
         #region singleton pattern
         private Connection _connection;

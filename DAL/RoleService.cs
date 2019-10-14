@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RoleService
+    public class RoleService: IService<DbRole>
     {
         #region singleton pattern
         private Connection _connection;

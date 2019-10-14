@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DbEntities
 {
-    public class DbUpload
+    public class DbUpload : TEntity<int>
     {
         public int Id { get; set; }
         public DateTime UploadDate { get; set; }

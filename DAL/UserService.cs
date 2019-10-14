@@ -7,7 +7,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UserService // singleton
+    public class UserService : IService<DbUser> // singleton
     {
         #region singleton pattern
         private Connection _connection;
@@ -29,7 +29,10 @@ namespace DAL
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
         #endregion
-        
+        public DbUser Get(int id)
+        {
+            return null;
+        }
         public DbUser Login(string email, string pw)
         {
             Command cmd = new Command("SP_Login", true);

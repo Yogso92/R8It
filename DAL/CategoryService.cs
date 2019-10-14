@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class CategoryService
+    public class CategoryService : IService<DbCategory>
     {
         #region singleton pattern
         private Connection _connection;
@@ -33,13 +33,13 @@ namespace DAL
 
         public DbCategory Get(int id)
         {
-            Command cmd = new Command("SELECT * FROM Country WHERE Id = @id");
+            Command cmd = new Command("SELECT * FROM Category WHERE Id = @id");
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbCategory>).FirstOrDefault();
         }
 
         public IEnumerable<DbCategory> GetAll()
         {
-            Command cmd = new Command("SELECT * FROM Country");
+            Command cmd = new Command("SELECT * FROM Category");
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbCategory>);
         }
         public DbCategory Insert(DbCategory category)

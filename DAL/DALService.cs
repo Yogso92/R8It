@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DbEntities;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Data.Common;
 
@@ -43,7 +44,7 @@ namespace DAL
 
         //If service T isn't included in _ServiceCollection, adds it and rebuilds the provider.
         //returns service
-        public static T GetService<T>() where T: class
+        public static T GetService<T>() where T: class//, IService<TEntity<int>>
         {
             if (Provider.GetService<T>() == null)
             {
