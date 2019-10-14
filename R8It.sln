@@ -29,7 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBusiness", "TestBusiness\TestBusiness.csproj", "{A8639B47-2926-4078-A305-482D04DBBCB4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R8It_Api", "R8It_Api\R8It_Api.csproj", "{DA73ED25-3F68-4868-A55B-8401C9F9C001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R8It_Api", "R8It_Api\R8It_Api.csproj", "{DA73ED25-3F68-4868-A55B-8401C9F9C001}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C701E2A-ACBD-4007-9F16-2A64339F412F}"
+	ProjectSection(SolutionItems) = preProject
+		fichierDB.mdf = fichierDB.mdf
+		test.mdf = test.mdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
