@@ -7,7 +7,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class FollowService
+    public class FollowService : IService<DbFollow>
     {
         #region singleton pattern
         private Connection _connection;
@@ -28,6 +28,10 @@ namespace DAL
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
         #endregion
+        public DbFollow Get(int id)
+        {
+            return null;
+        }
         public IEnumerable<DbFollow> GetFollowers(int followedId)
         {
             //Command cmd = new Command("SELECT Id, RoleId, Nickname, Birthdate, Email, CountryId FROM USER WHERE Id IN (SELECT FollowerId FROM Follow WHERE FollowingId = @followingid");

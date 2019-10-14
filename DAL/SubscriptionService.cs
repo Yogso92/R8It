@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class SubscriptionService
+    public class SubscriptionService: IService<DbSubscription>
     {
         #region singleton pattern
         private Connection _connection;
@@ -57,5 +57,9 @@ namespace DAL
             return _connection.ExecuteNonQuery(cmd) == 1;
         }
 
+        public DbSubscription Get(int id)
+        {
+            return null;
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DbEntities
 {
-    public class DbVisibilityLimit
+    public class DbVisibilityLimit : TEntity<int>
     {
         public int CountryId { get; set; }
         public int UploadId { get; set; }

@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class VisibilityLimitService
+    public class VisibilityLimitService: IService<DbVisibilityLimit>
     {
         #region singleton pattern
         private Connection _connection;
@@ -29,7 +29,10 @@ namespace DAL
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
         #endregion
-
+        public DbVisibilityLimit Get(int id)
+        {
+            return null;
+        }
         public DbVisibilityLimit Create(DbVisibilityLimit limit)
         {
             Command cmd = new Command("INSERT INTO VisibilityLimit(UploadId, CountryId) OUTPUT inserted.* VALUES (@uploadid, @countryid)");

@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UploadService
+    public class UploadService: IService<DbUpload>
     {
         #region singleton pattern
         private Connection _connection;
