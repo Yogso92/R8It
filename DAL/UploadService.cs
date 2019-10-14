@@ -8,23 +8,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UploadService: IService<DbUpload>
+    public class UploadService: IUploadService
     {
         #region singleton pattern
         private Connection _connection;
-        private static UploadService _instance;
-        public static UploadService Instance
+        private static IUploadService _instance;
+        public static IUploadService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new UploadService();
+                    return _instance = new IUploadService();
                 }
                 return _instance;
             }
         }
-        public UploadService()
+        public IUploadService()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

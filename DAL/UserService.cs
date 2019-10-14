@@ -7,23 +7,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UserService : IService<DbUser> // singleton
+    public class UserService : IUserService // singleton
     {
         #region singleton pattern
         private Connection _connection;
-        private static UserService _instance;
-        public static UserService Instance
+        private static IUserService _instance;
+        public static IUserService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new UserService();
+                    return _instance = new IUserService();
                 }
                 return _instance;
             }
         }
-        public UserService()
+        public IUserService()
         {
             Console.WriteLine("UserService ctor");
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");

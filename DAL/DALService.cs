@@ -5,7 +5,7 @@ using System.Data.Common;
 
 namespace DAL
 {
-    public static class DALService 
+    public static class DALService  //utilisation dépréciée, voir injection de dependance
     {
         private static ServiceProvider _Provider;
         private static ServiceCollection _ServiceCollection;

@@ -8,23 +8,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RoleService: IService<DbRole>
+    public class RoleService: IRoleService
     {
         #region singleton pattern
         private Connection _connection;
-        private static RoleService _instance;
-        public static RoleService Instance
+        private static IRoleService _instance;
+        public static IRoleService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new RoleService();
+                    return _instance = new IRoleService();
                 }
                 return _instance;
             }
         }
-        public RoleService()
+        public IRoleService()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

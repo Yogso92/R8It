@@ -5,10 +5,11 @@ using System.Linq;
 using DB;
 using DbEntities;
 using Toolbox.Mappers;
+using DAL.Interfaces;
 
 namespace DAL
 {
-    public class CategoryService : IService<DbCategory>
+    public class CategoryService : ICategoryService
     {
         #region singleton pattern
         private Connection _connection;
@@ -34,6 +35,7 @@ namespace DAL
         public DbCategory Get(int id)
         {
             Command cmd = new Command("SELECT * FROM Category WHERE Id = @id");
+            cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbCategory>).FirstOrDefault();
         }
 

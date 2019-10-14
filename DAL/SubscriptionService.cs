@@ -8,23 +8,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class SubscriptionService: IService<DbSubscription>
+    public class SubscriptionService: ISubscriptionService
     {
         #region singleton pattern
         private Connection _connection;
-        private static SubscriptionService _instance;
-        public static SubscriptionService Instance
+        private static ISubscriptionService _instance;
+        public static ISubscriptionService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new SubscriptionService();
+                    return _instance = new ISubscriptionService();
                 }
                 return _instance;
             }
         }
-        public SubscriptionService()
+        public ISubscriptionService()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
@@ -57,9 +57,5 @@ namespace DAL
             return _connection.ExecuteNonQuery(cmd) == 1;
         }
 
-        public DbSubscription Get(int id)
-        {
-            return null;
-        }
     }
 }

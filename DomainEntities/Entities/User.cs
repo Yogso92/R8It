@@ -19,7 +19,7 @@ namespace DomainEntities
         public int RoleId { get; set; }
 
         //Domain Fields
-        //TODO lazy loading
+        //TODO: choose either lazy loading or plain DDD objects
         private Country _Country;
         public Country Country
         {
@@ -27,7 +27,7 @@ namespace DomainEntities
             {
                 if(_Country == null)
                 {
-                    _Country = Provider.GetService<CountryService>().Get(CountryId).Map<Country>();
+                    _Country = Provider.GetService<ICountryService>().Get(CountryId).Map<Country>();
                 }
                 return Country;
             }
@@ -43,7 +43,7 @@ namespace DomainEntities
             {
                 if(_Role == null)
                 {
-                    _Role = Provider.GetService<RoleService>().Get(RoleId).Map<Role>();
+                    _Role = Provider.GetService<IRoleService>().Get(RoleId).Map<Role>();
                 }
                 return _Role;
             } 
@@ -52,7 +52,7 @@ namespace DomainEntities
                 //TODO handle edit
                 _Role = value;
                 RoleId = value.Id;
-                Provider.GetService<UserService>().Update(this.Map<DbUser>());
+                Provider.GetService<IUserService>().Update(this.Map<DbUser>());
             } 
         }
         private IEnumerable<User> _Following;

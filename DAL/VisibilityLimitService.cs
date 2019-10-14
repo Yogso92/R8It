@@ -8,23 +8,23 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class VisibilityLimitService: IService<DbVisibilityLimit>
+    public class VisibilityLimitService : IVisibilityLimitService
     {
         #region singleton pattern
         private Connection _connection;
-        private static VisibilityLimitService _instance;
-        public static VisibilityLimitService Instance
+        private static IVisibilityLimitService _instance;
+        public static IVisibilityLimitService Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new VisibilityLimitService();
+                    return _instance = new IVisibilityLimitService();
                 }
                 return _instance;
             }
         }
-        public VisibilityLimitService()
+        public IVisibilityLimitService()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
