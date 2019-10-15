@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class VisibilityLimitService : IVisibilityLimitService
+    public class VisibilityLimitRepository : IVisibilityLimitRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IVisibilityLimitService _instance;
-        public static IVisibilityLimitService Instance
+        private static IVisibilityLimitRepository _instance;
+        public static IVisibilityLimitRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IVisibilityLimitService();
+                    return _instance = new IVisibilityLimitRepository();
                 }
                 return _instance;
             }

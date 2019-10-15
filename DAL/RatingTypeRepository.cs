@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RatingTypeService : IRatingTypeService
+    public class RatingTypeRepository : IRatingTypeRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRatingTypeService _instance;
-        public static IRatingTypeService Instance
+        private static IRatingTypeRepository _instance;
+        public static IRatingTypeRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRatingTypeService();
+                    return _instance = new IRatingTypeRepository();
                 }
                 return _instance;
             }

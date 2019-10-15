@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class VoteService : IVoteService
+    public class VoteRepository : IVoteRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IVoteService _instance;
-        public static IVoteService Instance
+        private static IVoteRepository _instance;
+        public static IVoteRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IVoteService();
+                    return _instance = new IVoteRepository();
                 }
                 return _instance;
             }

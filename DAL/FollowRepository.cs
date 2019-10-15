@@ -7,18 +7,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class FollowService : IFollowService 
+    public class FollowRepository : IFollowRepository 
     {
         #region singleton pattern
         private Connection _connection;
-        private static IFollowService _instance;
-        public static IFollowService Instance
+        private static IFollowRepository _instance;
+        public static IFollowRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IFollowService();
+                    return _instance = new IFollowRepository();
                 }
                 return _instance;
             }

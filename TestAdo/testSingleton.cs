@@ -9,7 +9,7 @@ namespace TestAdo
     {
         public testSingleton()
         {
-            CategoryService service = DALService.GetService<CategoryService>();
+            CategoryRepository service = DALService.GetService<CategoryRepository>();
             Console.WriteLine("building testsingleton");
         }
     }

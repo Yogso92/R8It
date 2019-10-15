@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IVisibilityLimitService
+    public interface IVisibilityLimitRepository
     {
         DbVisibilityLimit Create(DbVisibilityLimit limit);
         IEnumerable<DbVisibilityLimit> GetAll();

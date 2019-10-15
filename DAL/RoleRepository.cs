@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RoleService: IRoleService
+    public class RoleRepository: IRoleRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRoleService _instance;
-        public static IRoleService Instance
+        private static IRoleRepository _instance;
+        public static IRoleRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRoleService();
+                    return _instance = new IRoleRepository();
                 }
                 return _instance;
             }

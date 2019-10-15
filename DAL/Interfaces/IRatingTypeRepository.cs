@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IRatingTypeService { 
+    public interface IRatingTypeRepository { 
         DbRatingType Get(int id);
         IEnumerable<DbRatingType> GetAll();
 

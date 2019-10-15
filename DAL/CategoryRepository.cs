@@ -9,24 +9,24 @@ using DAL.Interfaces;
 
 namespace DAL
 {
-    public class CategoryService : ICategoryService
+    public class CategoryRepository : ICategoryRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static CategoryService _instance;
-        public static CategoryService Instance
+        private static CategoryRepository _instance;
+        public static CategoryRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
                     Console.WriteLine("creating CategoryService");
-                    return _instance = new CategoryService();
+                    return _instance = new CategoryRepository();
                 }
                 return _instance;
             }
         }
-        public CategoryService()
+        public CategoryRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

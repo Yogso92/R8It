@@ -7,7 +7,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IUserService 
+    public interface IUserRepository 
     {
 
         DbUser Login(string email, string pw);

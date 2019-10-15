@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IUploadService
+    public interface IUploadRepository
     {
         DbUpload Get(int id);
         IEnumerable<DbUpload> GetAllFromUser(int id);

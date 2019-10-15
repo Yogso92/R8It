@@ -16,8 +16,8 @@ namespace R8It_Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _CategoryService;
-        public CategoryController(ICategoryService categoryService)
+        private readonly ICategoryRepository _CategoryService;
+        public CategoryController(ICategoryRepository categoryService)
         {
             _CategoryService = categoryService;
         }

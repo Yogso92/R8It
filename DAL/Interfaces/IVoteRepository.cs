@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IVoteService
+    public interface IVoteRepository
     {
         DbVote Insert(DbVote vote);
         IEnumerable<DbVote> GetVotes(int uploadid);

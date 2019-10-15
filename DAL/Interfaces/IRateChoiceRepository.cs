@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IRateChoiceService
+    public interface IRateChoiceRepository
     {
         DbRateChoice Get(int id);
         IEnumerable<DbRateChoice> GetChoices(int ratingTypeId);

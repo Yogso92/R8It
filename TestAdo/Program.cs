@@ -17,10 +17,10 @@ namespace TestAdo
 
             #region test DALService OK
             //first call should cw the add of CategoryService to the provider
-            CategoryService service = Provider.GetService<CategoryService>();
-            IRateChoiceService service1 = Provider.GetService<IRateChoiceService>();
+            CategoryRepository service = Provider.GetService<CategoryRepository>();
+            IRateChoiceRepository service1 = Provider.GetService<IRateChoiceRepository>();
 
-            IRateChoiceService service2 = Provider.GetService<IRateChoiceService>();
+            IRateChoiceRepository service2 = Provider.GetService<IRateChoiceRepository>();
             // testing multiple call to provider
             //should NOT cw the add of CategoryService to the provider
             testSingleton test = new testSingleton();

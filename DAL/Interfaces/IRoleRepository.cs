@@ -8,11 +8,11 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface ICountryService
+    public interface IRoleRepository
     {
-        public DbCountry Get(int id);
+        public DbRole Get(int id);
 
-        public IEnumerable<DbCountry> GetAll();
-
+        public IEnumerable<DbRole> GetAll();
+        public DbRole Insert(DbCategory category);
     }
 }

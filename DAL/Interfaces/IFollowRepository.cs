@@ -7,7 +7,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface IFollowService 
+    public interface IFollowRepository 
     {
         IEnumerable<DbFollow> GetFollowers(int followedId);
         IEnumerable<DbFollow> GetFollowed(int followerId);

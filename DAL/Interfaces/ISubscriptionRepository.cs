@@ -8,7 +8,7 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public interface ISubscriptionService
+    public interface ISubscriptionRepository
     {
         public IEnumerable<DbCategory> GetSubscriptions(int userId);
         public IEnumerable<DbUser> GetSubscribers(int categoryId);

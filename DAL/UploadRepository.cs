@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UploadService: IUploadService
+    public class UploadRepository: IUploadRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IUploadService _instance;
-        public static IUploadService Instance
+        private static IUploadRepository _instance;
+        public static IUploadRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IUploadService();
+                    return _instance = new IUploadRepository();
                 }
                 return _instance;
             }

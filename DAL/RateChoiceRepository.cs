@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class RateChoiceService : IRateChoiceService
+    public class RateChoiceRepository : IRateChoiceRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRateChoiceService _instance;
-        public static IRateChoiceService Instance
+        private static IRateChoiceRepository _instance;
+        public static IRateChoiceRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRateChoiceService();
+                    return _instance = new IRateChoiceRepository();
                 }
                 return _instance;
             }

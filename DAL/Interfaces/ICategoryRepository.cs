@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface ICategoryService
+    public interface ICategoryRepository
     {
         DbCategory Get(int id);
 

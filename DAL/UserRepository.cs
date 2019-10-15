@@ -7,18 +7,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class UserService : IUserService // singleton
+    public class UserRepository : IUserRepository // singleton
     {
         #region singleton pattern
         private Connection _connection;
-        private static IUserService _instance;
-        public static IUserService Instance
+        private static IUserRepository _instance;
+        public static IUserRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IUserService();
+                    return _instance = new IUserRepository();
                 }
                 return _instance;
             }

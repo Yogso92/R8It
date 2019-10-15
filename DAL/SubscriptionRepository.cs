@@ -8,18 +8,18 @@ using Toolbox.Mappers;
 
 namespace DAL
 {
-    public class SubscriptionService: ISubscriptionService
+    public class SubscriptionRepository: ISubscriptionRepository
     {
         #region singleton pattern
         private Connection _connection;
-        private static ISubscriptionService _instance;
-        public static ISubscriptionService Instance
+        private static ISubscriptionRepository _instance;
+        public static ISubscriptionRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new ISubscriptionService();
+                    return _instance = new ISubscriptionRepository();
                 }
                 return _instance;
             }

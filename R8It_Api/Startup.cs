@@ -34,14 +34,14 @@ namespace R8It_Api
             services.AddControllers();
             //added DAL services. 
             //TODO: build Domain services and replace these DAL services with the domains
-            services.AddSingleton<IUserService, UserService>()
-                    .AddSingleton<ICategoryService, CategoryService>()
-                    .AddSingleton<IFollowService, FollowService>()
-                    .AddSingleton<IRatingTypeService, RatingTypeService>()
-                    .AddSingleton<ISubscriptionService, SubscriptionService>()
-                    .AddSingleton<IRateChoiceService, RateChoiceService>()
-                    .AddSingleton<IUploadService, UploadService>()
-                    .AddSingleton<IVoteService, VoteService>();
+            services.AddSingleton<IUserRepository, UserRepository>()
+                    .AddSingleton<ICategoryRepository, CategoryRepository>()
+                    .AddSingleton<IFollowRepository, FollowRepository>()
+                    .AddSingleton<IRatingTypeRepository, RatingTypeRepository>()
+                    .AddSingleton<ISubscriptionRepository, SubscriptionRepository>()
+                    .AddSingleton<IRateChoiceRepository, RateChoiceRepository>()
+                    .AddSingleton<IUploadRepository, UploadRepository>()
+                    .AddSingleton<IVoteRepository, VoteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
