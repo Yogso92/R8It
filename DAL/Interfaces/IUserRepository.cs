@@ -16,6 +16,7 @@ namespace DAL
 
         IEnumerable<DbUser> GetAll();
         bool Update(DbUser user);
+        DbUser Get(int id);
 
     }
 }

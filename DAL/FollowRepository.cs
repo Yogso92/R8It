@@ -11,19 +11,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IFollowRepository _instance;
-        public static IFollowRepository Instance
+        private static FollowRepository _instance;
+        public static FollowRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IFollowRepository();
+                    return _instance = new FollowRepository();
                 }
                 return _instance;
             }
         }
-        public IFollowService()
+        public FollowRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }
@@ -36,7 +36,7 @@ namespace DAL
             cmd.AddParameter("followedid", followedId);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbFollow>);
         }
-        public IEnumerable<DbFollow> GetFollowed(int followerId)
+        public IEnumerable<DbFollow> GetFollowing(int followerId)
         {
             //Command cmd = new Command("SELECT Id, RoleId, Nickname, Birthdate, Email, CountryId FROM USER WHERE Id IN (SELECT FollowingId FROM Follow WHERE FollowerId = @followerid");
             Command cmd = new Command("SELECT FollowerId, FollowedId FROM Follow WHERE FollowerId = @followerid");

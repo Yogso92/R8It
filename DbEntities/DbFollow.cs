@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DbEntities
 {
-    public class DbFollow : TEntity<int>
+    public class DbFollow
     {
         public int FollowerId { get; set; }
         public int FollowedId { get; set; }

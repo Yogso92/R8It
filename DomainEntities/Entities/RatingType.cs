@@ -11,7 +11,13 @@ namespace DomainEntities
         public string Definition { get; set; }
 
         //domain
-        //TODO lazy loading
         public IEnumerable<RateChoice> RateChoices { get; set; }
+
+        public void UpdateNameAndDefinition(string name, string definition)
+        {
+            Name = name;
+            Definition = definition;
+            //todo : update through service
+        }
     }
 }

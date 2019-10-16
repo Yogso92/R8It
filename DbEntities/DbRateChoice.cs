@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DbEntities
 {
-    public class DbRateChoice : TEntity<int>
+    public class DbRateChoice
     {
         public int Id { get; set; }
         public int RatingTypeId { get; set; }

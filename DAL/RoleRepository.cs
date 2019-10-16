@@ -12,19 +12,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRoleRepository _instance;
-        public static IRoleRepository Instance
+        private static RoleRepository _instance;
+        public static RoleRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRoleRepository();
+                    return _instance = new RoleRepository();
                 }
                 return _instance;
             }
         }
-        public IRoleService()
+        public RoleRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

@@ -12,19 +12,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IVisibilityLimitRepository _instance;
-        public static IVisibilityLimitRepository Instance
+        private static VisibilityLimitRepository _instance;
+        public static VisibilityLimitRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IVisibilityLimitRepository();
+                    return _instance = new VisibilityLimitRepository();
                 }
                 return _instance;
             }
         }
-        public IVisibilityLimitService()
+        public VisibilityLimitRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

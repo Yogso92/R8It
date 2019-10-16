@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DAL;
 using DAL.Interfaces;
 using DbEntities;
 using DomainEntities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using R8It_Domain.Services.Interfaces;
 using Tools;
 
 namespace R8It_Api.Controllers
@@ -16,41 +16,43 @@ namespace R8It_Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _CategoryService;
-        public CategoryController(ICategoryRepository categoryService)
+        private readonly ICategoryService _CategoryService;
+        public CategoryController(ICategoryService categoryService)
         {
             _CategoryService = categoryService;
         }
         // GET: api/Category
         [HttpGet]
-        public IEnumerable<DbCategory> Get()
+        public IEnumerable<Category> Get()
         {
             return _CategoryService.GetAll();
         }
 
         // GET: api/Category/5
         [HttpGet("{n}", Name = "Get")]
-        public DbCategory Get(int n)
+        public Category Get(int n)
         {
             return _CategoryService.Get(n);
         }
 
         // POST: api/Category
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Category category)
         {
+            return;
         }
 
         // PUT: api/Category/5
-        [HttpPut("{n}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] Category category)
         {
+            _CategoryService.Insert(category);
         }
-
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{n}")]
         public void Delete(int n)
         {
+            return;
         }
     }
 }

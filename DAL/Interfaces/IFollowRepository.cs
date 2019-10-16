@@ -10,7 +10,7 @@ namespace DAL
     public interface IFollowRepository 
     {
         IEnumerable<DbFollow> GetFollowers(int followedId);
-        IEnumerable<DbFollow> GetFollowed(int followerId);
+        IEnumerable<DbFollow> GetFollowing(int followerId);
         bool Follow(int followerId, int followedId);
         bool Unfollow(int followerId, int followedId);
     }

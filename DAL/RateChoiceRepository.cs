@@ -12,19 +12,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRateChoiceRepository _instance;
-        public static IRateChoiceRepository Instance
+        private static RateChoiceRepository _instance;
+        public static RateChoiceRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRateChoiceRepository();
+                    return _instance = new RateChoiceRepository();
                 }
                 return _instance;
             }
         }
-        public IRateChoiceService()
+        public RateChoiceRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

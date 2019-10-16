@@ -10,5 +10,13 @@ namespace DomainEntities
         
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Icon { get; set; }
+
+        public void UpdateInfos(Category category)
+        {
+            //TODO: changer infos
+            category.Id = Id;
+
+        }
     }
 }

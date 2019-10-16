@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DbEntities
 {
-    public class DbCountry : TEntity<int>
+    public class DbCountry
     {
         public int Id { get; set; }
         public string Name { get; set; }

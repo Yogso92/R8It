@@ -2,7 +2,7 @@
 
 namespace DbEntities
 {
-    public class DbUser : TEntity<int>
+    public class DbUser 
     {
         public int Id { get; set; }
         public int RoleId { get; set; }

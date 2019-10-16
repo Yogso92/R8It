@@ -12,19 +12,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IRatingTypeRepository _instance;
-        public static IRatingTypeRepository Instance
+        private static RatingTypeRepository _instance;
+        public static RatingTypeRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IRatingTypeRepository();
+                    return _instance = new RatingTypeRepository();
                 }
                 return _instance;
             }
         }
-        public IRatingTypeService()
+        public RatingTypeRepository()
         {
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
         }

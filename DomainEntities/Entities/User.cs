@@ -18,50 +18,22 @@ namespace DomainEntities
         public int CountryId { get; set; }
         public int RoleId { get; set; }
 
-        //Domain Fields
-        //TODO: choose either lazy loading or plain DDD objects
-        private Country _Country;
         public Country Country
         {
-            get
-            {
-                if(_Country == null)
-                {
-                    _Country = Provider.GetService<ICountryRepository>().Get(CountryId).Map<Country>();
-                }
-                return Country;
-            }
-            set
-            {
-                _Country = value;
-            }
+            get; set;
         }
         private Role _Role;
         public Role Role 
         {
-            get 
-            {
-                if(_Role == null)
-                {
-                    _Role = Provider.GetService<IRoleRepository>().Get(RoleId).Map<Role>();
-                }
-                return _Role;
-            } 
-            internal set
-            {
-                //TODO handle edit
-                _Role = value;
-                RoleId = value.Id;
-                Provider.GetService<IUserRepository>().Update(this.Map<DbUser>());
-            } 
+            get; set;
         }
-        private IEnumerable<User> _Following;
-        public IEnumerable<User> Following { get; internal set; }
-        private IEnumerable<User> _FollowedBy;
-        public IEnumerable<User> FollowedBy { get; internal set; }
-        private IEnumerable<Category> _FollowedCategories;
-        public IEnumerable<Category> FollowedCategories { get; internal set; } 
-        
-
+        public IEnumerable<User> Following { get;  set; }
+        public IEnumerable<User> FollowedBy { get;  set; }
+        public IEnumerable<Category> FollowedCategories { get;  set; } 
+        public void EditCountry(Country country)
+        {
+            CountryId = country.Id;
+            //todo: update
+        }
     }
 }

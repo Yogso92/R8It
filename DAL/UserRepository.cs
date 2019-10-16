@@ -11,19 +11,19 @@ namespace DAL
     {
         #region singleton pattern
         private Connection _connection;
-        private static IUserRepository _instance;
-        public static IUserRepository Instance
+        private static UserRepository _instance;
+        public static UserRepository Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    return _instance = new IUserRepository();
+                    return _instance = new UserRepository();
                 }
                 return _instance;
             }
         }
-        public IUserService()
+        public UserRepository()
         {
             Console.WriteLine("UserService ctor");
             _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
@@ -31,7 +31,9 @@ namespace DAL
         #endregion
         public DbUser Get(int id)
         {
-            return null;
+            Command cmd = new Command("SELECT Nickname, Birthdate, Email, CountryId FROM [User] WHERE Id = @id");
+            cmd.AddParameter("id", id);
+            return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUser>).FirstOrDefault();
         }
         public DbUser Login(string email, string pw)
         {
