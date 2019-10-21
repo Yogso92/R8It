@@ -17,5 +17,6 @@ namespace R8It_Api.Models
         public IEnumerable<BaseUserModel> Following { get; set; }
         public IEnumerable<BaseUserModel> FollowedBy { get; set; }
         public IEnumerable<CategoryModel> FollowedCategories { get; set; }
+        public string Token { get; set; }
     }
 }

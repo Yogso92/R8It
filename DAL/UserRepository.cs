@@ -31,7 +31,7 @@ namespace DAL
         #endregion
         public DbUser Get(int id)
         {
-            Command cmd = new Command("SELECT Nickname, Birthdate, Email, CountryId FROM [User] WHERE Id = @id");
+            Command cmd = new Command("SELECT Nickname, Birthdate, Email, CountryId, RoleId, Id FROM [User] WHERE Id = @id");
             cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUser>).FirstOrDefault();
         }

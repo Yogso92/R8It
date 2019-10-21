@@ -34,6 +34,7 @@ namespace DAL
         public DbCountry Get(int id)
         {
             Command cmd = new Command("SELECT * FROM Country WHERE Id = @id");
+            cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbCountry>).FirstOrDefault();
         }
 

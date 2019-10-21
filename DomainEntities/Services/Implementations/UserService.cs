@@ -38,7 +38,10 @@ namespace R8It_Domain.Services.Implementations
 
         public User Login(string email, string password)
         {
-            return UserRepository.Login(email, password).Map<User>();
+            User user = UserRepository.Login(email, password)?.Map<User>();
+            user.Role = RoleRepository.Get(user.RoleId).Map<Role>();
+            user.Country = CountryRepository.Get(user.CountryId).Map<Country>();
+            return user;
         }
         public User GetFullUser(int id )
         {

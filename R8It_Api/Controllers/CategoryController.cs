@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using DAL.Interfaces;
 using DbEntities;
 using DomainEntities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using R8It_Domain.Services.Interfaces;
@@ -12,6 +14,7 @@ using Tools;
 
 namespace R8It_Api.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -23,6 +26,7 @@ namespace R8It_Api.Controllers
         }
         // GET: api/Category
         [HttpGet]
+        [Authorize]
         public IEnumerable<Category> Get()
         {
             return _CategoryService.GetAll();

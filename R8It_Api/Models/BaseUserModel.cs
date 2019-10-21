@@ -13,6 +13,7 @@ namespace R8It_Api.Models
         public string Email { get; set; }
         public string Country { get; set; }
         public string Role { get; set; }
+        public string Token { get; set; }
 
     }
 }

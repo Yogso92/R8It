@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using DAL.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using R8It_Domain.Services.Implementations;
 using Tools;
 
@@ -31,7 +34,7 @@ namespace R8It_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", System.Data.SqlClient.SqlClientFactory.Instance);
             services.AddControllers();
             //added DAL services. 
@@ -54,6 +57,29 @@ namespace R8It_Api
                 .Where(x => x.Name.EndsWith("Service"))
                 .AsInterfaces()
                 .RegisterAsSingleton(services);
+
+            //setup JWT tokens
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["jwt:key"]))
+                    };
+                });
+            //setup cors
+            const string corsUrlKey = "Security:Cors:Url";
+            services.AddCors(options =>
+            {
+                string url = this.Configuration[corsUrlKey];
+                options.AddPolicy("AllowSpecificOrigin",
+                                  builder => builder.WithOrigins(url)
+                                                    .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,13 +93,14 @@ namespace R8It_Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            
             
         }
     }

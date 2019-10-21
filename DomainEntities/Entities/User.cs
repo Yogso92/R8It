@@ -22,8 +22,7 @@ namespace DomainEntities
         {
             get; set;
         }
-        private Role _Role;
-        public Role Role 
+        public Role Role
         {
             get; set;
         }
@@ -33,7 +32,6 @@ namespace DomainEntities
         public void EditCountry(Country country)
         {
             CountryId = country.Id;
-            //todo: update
         }
     }
 }

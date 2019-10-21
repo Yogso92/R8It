@@ -33,6 +33,7 @@ namespace DAL
         public DbRole Get(int id)
         {
             Command cmd = new Command("SELECT * FROM Role WHERE Id = @id");
+            cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbRole>).FirstOrDefault();
         }
 
