@@ -17,7 +17,6 @@ namespace DomainEntities
         {
             Name = name;
             Definition = definition;
-            //todo : update through service
         }
     }
 }

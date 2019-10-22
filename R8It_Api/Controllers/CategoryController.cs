@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using R8It_Api.Models;
 using R8It_Domain.Services.Interfaces;
 using Tools;
 
@@ -17,6 +18,7 @@ namespace R8It_Api.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _CategoryService;
@@ -41,18 +43,18 @@ namespace R8It_Api.Controllers
 
         // POST: api/Category
         [HttpPost]
-        public void Post([FromBody] Category category)
+        public void Post([FromBody] CategoryModel category)
         {
             return;
         }
 
-        // PUT: api/Category/5
+        // PUT: api/Category
         [HttpPut]
-        public void Put([FromBody] Category category)
+        public void Put([FromBody] CategoryModel category)
         {
-            _CategoryService.Insert(category);
+            _CategoryService.Insert(category.Map<Category>());
         }
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Category/5
         [HttpDelete("{n}")]
         public void Delete(int n)
         {

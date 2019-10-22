@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainEntities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,6 @@ using Tools;
 
 namespace R8It_Api.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -51,7 +51,6 @@ namespace R8It_Api.Controllers
         {
             return _UserService.GetFullUser(n);
         }
-
 
 
         private string CreateToken(User user)

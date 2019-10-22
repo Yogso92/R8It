@@ -76,9 +76,11 @@ namespace R8It_Api
             services.AddCors(options =>
             {
                 string url = this.Configuration[corsUrlKey];
-                options.AddPolicy("AllowSpecificOrigin",
-                                  builder => builder.WithOrigins(url)
-                                                    .AllowCredentials());
+                options.AddPolicy("AllowAnyOrigin",
+                                  builder => builder.AllowAnyOrigin()
+                                                    .AllowAnyHeader()
+                                                    .AllowAnyMethod()
+                                                    ) ;
             });
         }
 
@@ -100,6 +102,7 @@ namespace R8It_Api
             {
                 endpoints.MapControllers();
             });
+            app.UseCors();
             
             
         }

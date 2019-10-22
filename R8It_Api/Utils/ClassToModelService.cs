@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DomainEntities;
 using R8It_Api.Models;
+using R8It_Domain.Entities;
 using R8It_Domain.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,6 @@ namespace R8It_Api.Utils
             BaseUserModel model = user.Map<BaseUserModel>();
             model.Country = _countryRepository.Get(user.CountryId).Name;
             model.Role = _roleRepository.Get(user.RoleId).Name;
-
             return model;
         }
 
@@ -47,12 +47,17 @@ namespace R8It_Api.Utils
             model.FollowedCategories = origin.FollowedCategories.Select(c => ToCategoryModel(c));
             model.FollowedBy = origin.FollowedBy.Select(u => ToBaseUserModel(u));
             model.Following = origin.Following.Select(u => ToBaseUserModel(u));
-
             return model;
         }
         public CategoryModel ToCategoryModel(Category category)
         {
             CategoryModel model = category.Map<CategoryModel>();
+            return model;
+        }
+        public UploadModel ToUploadModel(Upload upload)
+        {
+            UploadModel model = upload.Map<UploadModel>();
+            model.Result = _voteService.GetResult(model.Id);
             return model;
         }
     }
