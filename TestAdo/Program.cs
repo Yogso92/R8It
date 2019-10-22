@@ -14,54 +14,54 @@ namespace TestAdo
     {
         static void Main(string[] args)
         {
-
+            
             #region test DALService OK
-            //first call should cw the add of CategoryService to the provider
-            CategoryRepository service = Provider.GetService<CategoryRepository>();
-            IRateChoiceRepository service1 = Provider.GetService<IRateChoiceRepository>();
+           // first call should cw the add of CategoryService to the provider
+           // CategoryRepository service = Provider.GetService<CategoryRepository>();
+           // IRateChoiceRepository service1 = Provider.GetService<IRateChoiceRepository>();
 
-            IRateChoiceRepository service2 = Provider.GetService<IRateChoiceRepository>();
-            // testing multiple call to provider
-            //should NOT cw the add of CategoryService to the provider
-            testSingleton test = new testSingleton();
-            testSingleton test2 = new testSingleton();
+           // IRateChoiceRepository service2 = Provider.GetService<IRateChoiceRepository>();
+           // testing multiple call to provider
+           //should NOT cw the add of CategoryService to the provider
+           //testSingleton test = new testSingleton();
+           // testSingleton test2 = new testSingleton();
 
-            //testing the actual service
-            foreach (DbCategory category in service.GetAll())
-            {
-                Console.WriteLine(category.Name);
-            }
+           // testing the actual service
+           // foreach (DbCategory category in service.GetAll())
+           // {
+           //     Console.WriteLine(category.Name);
+           // }
 
 
 
             #endregion
             #region test USerService 
             //TODO Update
-            //UserService service = serviceProvider.GetService<UserService>();
-            //DbUser testReceive = service.Login("test@test.com", "testpw");
-            //Console.WriteLine(testReceive.Nickname);
-            //testReceive.Nickname = "test2";
-            //testReceive.Email = "yolo@test.com";
-            //testReceive.Password = "testpw";
-            //service.Register(testReceive);
+            UserRepository uservice = Provider.GetService<UserRepository>();
+            DbUser testReceive = uservice.Login("test@test.com", "testpw");
+            Console.WriteLine(testReceive.Nickname);
+            testReceive.Nickname = "test2";
+            testReceive.Email = "yolo@test.com";
+            testReceive.Password = "testpw";
+            uservice.Register(testReceive);
 
-            //foreach (DbUser user in service.GetAll())
-            //{
-            //    Console.WriteLine(user.Email);
-            //}
+            foreach (DbUser user in uservice.GetAll())
+            {
+                Console.WriteLine(user.Email);
+            }
             #endregion
             #region test CategoryService OK
-            //CategoryService service = serviceProvider.GetService<CategoryService>();
-            //DbCategory category = new DbCategory
-            //{
-            //    Name = "yolo2"
-            //};
-            //category = service.Insert(category);
-            //Console.WriteLine(category.Id);
+            CategoryRepository service = Provider.GetService<CategoryRepository>();
+            DbCategory category = new DbCategory
+            {
+                Name = "yolo2"
+            };
+            category = service.Insert(category);
+            Console.WriteLine(category.Id);
             #endregion
-            #region test CountryService TODO
-            #endregion
-            #region test FollowService OK
+            //#region test CountryService TODO
+            //#endregion
+            //#region test FollowService OK
             //DbFollow follow = new DbFollow
             //{
             //    FollowedId = 1,
@@ -74,7 +74,8 @@ namespace TestAdo
 
             //    service.Follow(1, 4);
             //    Console.WriteLine("follow unique pas ok");
-            //}catch(Exception e)
+            //}
+            //catch (Exception e)
             //{
             //    Console.WriteLine("follow unique ok");
             //}
@@ -91,8 +92,8 @@ namespace TestAdo
             //service.Unfollow(1, 4);
 
 
-            #endregion
-            #region RatingServiceTest OK
+            //#endregion
+            //#region RatingServiceTest OK
             //RatingTypeService service = serviceProvider.GetService<RatingTypeService>();
             //service.Delete(1);
 
@@ -105,8 +106,8 @@ namespace TestAdo
             //Console.WriteLine(ratingType.Id);
 
             //Console.WriteLine(service.GetAll().FirstOrDefault().Name);
-            #endregion
-            #region SubscriptionService OK 
+            //#endregion
+            //#region SubscriptionService OK 
             //SubscriptionService ss = serviceProvider.GetService<SubscriptionService>();
             //try
             //{
@@ -132,8 +133,8 @@ namespace TestAdo
             //{
             //    Console.WriteLine(cat.Name);
             //}
-            #endregion
-            #region RateChoiceService
+            //#endregion
+            //#region RateChoiceService
 
             //RateChoiceService service = serviceProvider.GetService<RateChoiceService>();
             //DbRateChoice choice = new DbRateChoice
@@ -154,13 +155,13 @@ namespace TestAdo
             //}
 
             //Console.WriteLine(choice.Id);
-            //foreach(DbRateChoice choice in service.GetChoices(1))
+            //foreach (DbRateChoice choice in service.GetChoices(1))
             //{
             //    Console.WriteLine($"{choice.Text} : {choice.Value}");
             //}
 
-            #endregion
-            #region UploadService OK
+            //#endregion
+            //#region UploadService OK
             //UploadService service = serviceProvider.GetService<UploadService>();
             //DbUpload upload = new DbUpload
             //{
@@ -181,16 +182,16 @@ namespace TestAdo
             //DbUpload upload = service.Get(1);
             //File.WriteAllBytes("D:/yolo.png", upload.File);
 
-            //foreach(DbUpload upload1 in service.GetAll())
+            //foreach (DbUpload upload1 in service.GetAll())
             //{
             //    Console.WriteLine(upload1.Context);
             //}
-            //foreach(DbUpload upload2 in service.GetAllFromUser(1))
+            //foreach (DbUpload upload2 in service.GetAllFromUser(1))
             //{
             //    Console.WriteLine(upload2.Context);
             //}
-            #endregion
-            #region VoteService OK
+            //#endregion
+            //#region VoteService OK
             //VoteService service = serviceProvider.GetService<VoteService>();
             //DbVote vote = new DbVote
             //{
@@ -215,12 +216,12 @@ namespace TestAdo
             //{
             //    Console.WriteLine(item.UserId);
             //}
-            //foreach(DbVote item in service.GetAll())
+            //foreach (DbVote item in service.GetAll())
             //{
-            //    Console.WriteLine(  item.RateChoiceId);
+            //    Console.WriteLine(item.RateChoiceId);
             //}
 
-            #endregion
+            //#endregion
             Console.ReadKey();
         }
     }
