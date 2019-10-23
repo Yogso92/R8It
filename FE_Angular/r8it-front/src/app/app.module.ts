@@ -8,6 +8,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { TokenInterceptor } from './interceptors/token-interceptor';
+import { UserService } from './services/user-service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,14 @@ import { HomeComponent } from './components/home/home.component';
     NbSpinnerModule,
     NbUserModule
   ],
-  providers: [
+  providers: 
+  [
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass : TokenInterceptor, 
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })

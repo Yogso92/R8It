@@ -2,3 +2,7 @@
 <input nbInput [(ngModel)] = "this.form.Password" type="password" placeholder="Password" />
 <input type = "button" value="Login" (click) = "login()"/>
 <p>token : {{token}}</p>
+
+<div *ngFor="let item of categories | async">
+    {{item.name}}
+</div>

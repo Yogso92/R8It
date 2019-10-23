@@ -19,6 +19,7 @@ namespace R8It_Api.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _CategoryService;
@@ -28,7 +29,6 @@ namespace R8It_Api.Controllers
         }
         // GET: api/Category
         [HttpGet]
-        [Authorize]
         public IEnumerable<Category> Get()
         {
             return _CategoryService.GetAll();
@@ -36,10 +36,8 @@ namespace R8It_Api.Controllers
 
         // GET: api/Category/5
         [HttpGet("{n}", Name = "Get")]
-        [EnableCors]
         public Category Get(int n)
         {
-            return new Category { Id = 1, Icon = "test", Name = "YOLO" };
             return _CategoryService.Get(n);
         }
 
