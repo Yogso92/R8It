@@ -98,9 +98,7 @@ namespace R8It_Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(builder => builder.AllowAnyOrigin()
-                                                    .AllowAnyHeader()
-                                                    .AllowAnyMethod());
+            app.UseCors("AllowAnyOrigin");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-service';
 import LoginFormModel from 'src/app/models/login-form-model';
 import { Observable } from 'rxjs';
+import { LoginAnswer } from 'src/app/models/login-answer';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +20,19 @@ export class HomeComponent implements OnInit {
     this._form = v;
   }
   
-  private _token : Observable<string>;
-  public get token() :  Observable<string> {
+  private _answer : Observable<LoginAnswer>;
+  public get answer() :  Observable<LoginAnswer> {
+    return this._answer;
+  }
+  public set answer(v :  Observable<LoginAnswer>) {
+    this._answer = v;
+  }
+  
+  private _token : string;
+  public get token() : string {
     return this._token;
   }
-  public set token(v :  Observable<string>) {
+  public set token(v : string) {
     this._token = v;
   }
   
@@ -31,13 +40,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService : UserService) { 
     this.form = new LoginFormModel();
+    this.answer = null;
   }
   
   ngOnInit() {
   }
   login(){
-    console.log("yolo")
-    this.userService.login(this.form).subscribe(data => console.log(data), error => console.log(error))
+    this.answer = this.userService.login(this.form);
+    this.answer.subscribe(data => this.token = data.token)
   }
 
 }
