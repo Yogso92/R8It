@@ -53,12 +53,22 @@ namespace R8It_Api.Controllers
         }
         [HttpPut]
         [AllowAnonymous]
-        public void Register(BaseUserModel model)
+        public IActionResult Register(BaseUserModel model)
         {
+            IActionResult actionResult = this.Problem();
             if (ModelState.IsValid)
             {
-                _UserService.Create(model.Map<User>());
+                try
+                {
+                    model = _UserService.Create(model.Map<User>()).Map<BaseUserModel>();
+                    actionResult = this.Ok(model);
+                }
+                catch (Exception)
+                {
+
+                }
             }
+            return actionResult;
         }
 
         private string CreateToken(User user)

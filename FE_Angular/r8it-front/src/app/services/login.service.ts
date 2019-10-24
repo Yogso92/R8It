@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import LoginFormModel from '../models/login-form-model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { LoginAnswer } from '../models/login-answer';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { BaseUserModel } from '../models/base-user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,12 @@ export class LoginService {
 
   constructor(private httpClient : HttpClient) {this.logged= new BehaviorSubject(false)}
 
+  register(user : BaseUserModel) : Observable<HttpResponse<BaseUserModel>>{
+    let url : string = this._endpoint+"/register";
+    return this.httpClient.put<HttpResponse<BaseUserModel>>(url, user);
+    
 
+  }
   login(loginform : LoginFormModel) {
         
     let url : string = this._endpoint+ "/login"

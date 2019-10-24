@@ -21,8 +21,7 @@ namespace R8It_Api.Controllers
         {
             _userService = userService;
         }
-        [AllowAnonymous]
-        [HttpPost]
+        
         
     }
 }
