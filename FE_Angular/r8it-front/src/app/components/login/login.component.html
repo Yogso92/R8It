@@ -1,0 +1,6 @@
+<div class ="login-right">
+    <span class = ".fill-space"></span>
+    <input nbInput [(ngModel)] = "this.form.Email" type = "text" placeholder="Email" nbPopover="Email invalid" nbPopoverTrigger="noop" nbPopoverPlacement="bottom" nbPopoverStatus="danger"/>
+    <input nbInput [(ngModel)] = "this.form.Password" type="password" placeholder="Password" (keyup.enter)="login()" nbPopover="Password invalid" nbPopoverTrigger="noop" nbPopoverPlacement="bottom"/>
+    <button nbButton (click) = "login()">Login </button>
+</div>

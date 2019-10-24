@@ -31,18 +31,18 @@ namespace R8It_Domain.Services.Implementations
             return ratingType;
         }
 
-        public IEnumerable<RatingType> GetAll()
+        public List<RatingType> GetAll()
         {
-            IEnumerable<RatingType> ratingTypes = TypeRepository.GetAll().Select(s => s.Map<RatingType>());
+            List<RatingType> ratingTypes = TypeRepository.GetAll().Select(s => s.Map<RatingType>()).ToList();
             foreach(RatingType type in ratingTypes){
                 type.RateChoices = GetRateChoices(type.Id);
             }
             return ratingTypes;
         }
 
-        public IEnumerable<RateChoice> GetRateChoices(int ratingtypeid)
+        public List<RateChoice> GetRateChoices(int ratingtypeid)
         {
-            return ChoiceRepository.GetChoices(ratingtypeid).Select(c => c.Map<RateChoice>());
+            return ChoiceRepository.GetChoices(ratingtypeid).Select(c => c.Map<RateChoice>()).ToList();
         }
 
         public RatingType Insert(RatingType ratingType)

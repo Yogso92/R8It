@@ -19,7 +19,6 @@ namespace R8It_Api.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _CategoryService;
@@ -29,6 +28,7 @@ namespace R8It_Api.Controllers
         }
         // GET: api/Category
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Category> Get()
         {
             return _CategoryService.GetAll();
@@ -50,12 +50,14 @@ namespace R8It_Api.Controllers
 
         // PUT: api/Category
         [HttpPut]
+        [Authorize]
         public void Put([FromBody] CategoryModel category)
         {
             _CategoryService.Insert(category.Map<Category>());
         }
         // DELETE: api/Category/5
         [HttpDelete("{n}")]
+        [Authorize]
         public void Delete(int n)
         {
             return;

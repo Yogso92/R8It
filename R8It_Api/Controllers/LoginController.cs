@@ -51,7 +51,15 @@ namespace R8It_Api.Controllers
         {
             return _UserService.GetFullUser(n);
         }
-
+        [HttpPut]
+        [AllowAnonymous]
+        public void Register(BaseUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _UserService.Create(model.Map<User>());
+            }
+        }
 
         private string CreateToken(User user)
         {

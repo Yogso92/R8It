@@ -3,18 +3,28 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule, NbPopoverModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
-import { UserService } from './services/user-service';
+import { LoginComponent } from './components/login/login.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { LoginService } from './services/login.service';
+import { LoggedTopbarComponent } from './components/logged-topbar/logged-topbar.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    SideMenuComponent,
+    LoggedTopbarComponent,
+    UploadComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +47,12 @@ import { UserService } from './services/user-service';
     NbIconModule,
     NbDialogModule.forRoot(),
     NbSpinnerModule,
-    NbUserModule
+    NbUserModule,
+    NbPopoverModule
   ],
   providers: 
   [
-    UserService,
+    LoginService,
     {
       provide: HTTP_INTERCEPTORS, 
       useClass : TokenInterceptor, 
