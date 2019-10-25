@@ -1,6 +1,23 @@
 <nb-alert status="danger" *ngIf="registerError">Registering failed. Please check fields</nb-alert>
 
-<form>
-    
-    <input nbInput type="submit" />
+<form [formGroup] = "form" (ngSubmit)="register()">
+    <nb-card status="primary">
+        <nb-card-header  >Registration form</nb-card-header>
+        <nb-card-body>
+            <input nbInput fullWidth type='text' formControlName = 'nickname' placeholder = 'Nickname' />
+            <input nbInput fullWidth type='text' formControlName = 'email' placeholder = 'Email' />
+            <input nbInput fullWidth type='password' formControlName = 'password' placeholder = 'Password' />
+            <input nbInput fullWidth type='password' formControlName = 'confirmPassword' placeholder = 'Confirm Password' />
+            <div class ="aligncontent">
+                <input nbInput  type='date' formControlName = 'birthdate' placeholder = 'Birthdate' />
+                <nb-select class = "nb-select" formControlName="country">
+                    <nb-option *ngFor="let item of countries | async" [value] = "item">
+                        {{item.name}} 
+                    </nb-option>
+                </nb-select>
+                <button nbButton status="success" [disabled]="!form.valid"> Register</button>
+            </div>
+            
+        </nb-card-body>
+    </nb-card>
 </form>

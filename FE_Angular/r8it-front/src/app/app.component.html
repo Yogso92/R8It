@@ -11,7 +11,8 @@
     </app-side-menu>
   </nb-sidebar>
   <nb-layout-column>
-    <router-outlet>
+    <app-register *ngIf="!(isLogged | async)"></app-register>
+    <router-outlet *ngIf="isLogged | async">
       
     </router-outlet>
   </nb-layout-column>

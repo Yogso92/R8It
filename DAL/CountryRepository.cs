@@ -40,7 +40,7 @@ namespace DAL
 
         public IEnumerable<DbCountry> GetAll()
         {
-            Command cmd = new Command("SELECT * FROM Country");
+            Command cmd = new Command("SELECT Id, Alpha3 as [Iso], langEN as [Name] FROM Country");
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbCountry>);
         }
 

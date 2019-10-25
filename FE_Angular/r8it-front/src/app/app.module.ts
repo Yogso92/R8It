@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule, NbPopoverModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule, NbPopoverModule, NbAlertModule, NbSelectModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { LoginComponent } from './components/login/login.component';
@@ -48,7 +48,10 @@ import { RegisterComponent } from './components/register/register.component';
     NbDialogModule.forRoot(),
     NbSpinnerModule,
     NbUserModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbAlertModule,
+    ReactiveFormsModule,
+    NbSelectModule
   ],
   providers: 
   [

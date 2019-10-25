@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { BaseUserModel } from 'src/app/models/base-user-model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Country } from 'src/app/models/country';
+import { Observable } from 'rxjs';
+import { CountryService } from 'src/app/services/country.service';
+import { async } from 'rxjs/internal/scheduler/async';
+import { AsyncPipe } from '@angular/common';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +23,24 @@ export class RegisterComponent implements OnInit {
   public set user(v : BaseUserModel) {
     this._user = v;
   }
+  
+  private _form : FormGroup;
+  public get form() : FormGroup {
+    return this._form;
+  }
+  public set form(v : FormGroup) {
+    this._form = v;
+  }
+  
+  private _countries : Observable<Array<Country>>;
+  public get countries() : Observable<Array<Country>> {
+    
+    return this._countries;
+  }
+  public set countries(v : Observable<Array<Country>>) {
+    this._countries = v;
+  }
+  
 
   
   private _registerError : boolean;
@@ -28,7 +53,23 @@ export class RegisterComponent implements OnInit {
   
   
   
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService, private formBuilder : FormBuilder, private countryService : CountryService) {
+    this.form = this.formBuilder.group({
+      nickname : ['', Validators.minLength(7)],
+      birthdate: ['', Validators.required],
+      email: ['', Validators.required], 
+      country : [ Validators.required],
+      password : ['', Validators.minLength(5)],
+      confirmPassword : ['', Validators.required]
+    }, 
+    {validator : this.checkPasswords})
+    this.countries = this.countryService.Get().pipe(map(data => {
+      for(let item of data){
+        console.log(item)
+      }
+      return data;
+    }));
+   }
 
   ngOnInit() {
   }
@@ -38,5 +79,11 @@ export class RegisterComponent implements OnInit {
       else this.registerError = true;
     })
   }
+  checkPasswords(group : FormGroup){
+    const pass = group.get('password').value;
+    const verif = group.get('confirmPassword').value;
+    return pass ===verif ? null : {notSame : true}
+  }
+  
 
 }

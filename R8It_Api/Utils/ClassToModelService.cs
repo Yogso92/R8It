@@ -35,7 +35,7 @@ namespace R8It_Api.Utils
         public BaseUserModel ToBaseUserModel(User user)
         {
             BaseUserModel model = user.Map<BaseUserModel>();
-            model.Country = _countryRepository.Get(user.CountryId).Name;
+            //model.Country = _countryRepository.Get(user.CountryId).Name;
             model.Role = _roleRepository.Get(user.RoleId).Name;
             return model;
         }
