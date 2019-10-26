@@ -25,7 +25,7 @@ namespace DAL
         }
         public FollowRepository()
         {
-            _connection = new Connection(@"Data Source = TECHNOBEL\; Initial Catalog = R8It; User ID = sa; Password = test1234=", "System.Data.SqlClient");
+            _connection = new Connection(Environment.GetEnvironmentVariable("connectionString"), "System.Data.SqlClient");
         }
         #endregion
         public IEnumerable<DbFollow> GetFollowers(int followedId)
