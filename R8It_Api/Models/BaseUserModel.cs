@@ -19,6 +19,7 @@ namespace R8It_Api.Models
         [Required]
         public Country Country { get; set; }
         public string Role { get; set; }
+        public string Password { get; set; }
         public string Token { get; set; }
 
     }

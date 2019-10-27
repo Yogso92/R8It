@@ -76,7 +76,7 @@ namespace R8It_Api
             services.AddCors(options =>
             {
                 string url = this.Configuration[corsUrlKey];
-                options.AddPolicy("AllowAnyOrigin",
+                options.AddPolicy("AllowAnyRequest",
                                   builder => builder.AllowAnyOrigin()
                                                     .AllowAnyHeader()
                                                     .AllowAnyMethod()
@@ -100,7 +100,7 @@ namespace R8It_Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors("AllowAnyOrigin");
+            app.UseCors("AllowAnyRequest");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

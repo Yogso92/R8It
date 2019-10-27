@@ -44,7 +44,7 @@ namespace DAL
 
         }
 
-        public bool Register(DbUser user)
+        public DbUser Register(DbUser user)
         {
             Command cmd = new Command("SP_Register", true);
             cmd.AddParameter("nickname", user.Nickname);
@@ -52,7 +52,7 @@ namespace DAL
             cmd.AddParameter("email", user.Email);
             cmd.AddParameter("password", user.Password);
             cmd.AddParameter("countryid", user.CountryId);
-            return _connection.ExecuteNonQuery(cmd) == 1;
+            return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUser>).FirstOrDefault();
         }
 
         public IEnumerable<DbUser> GetAll()

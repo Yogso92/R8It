@@ -60,5 +60,11 @@ namespace R8It_Api.Utils
             model.Result = _voteService.GetResult(model.Id);
             return model;
         }
+        public User BaseModelToDbUser(BaseUserModel model)
+        {
+            User user = model.Map<User>();
+            user.CountryId = model.Country.Id;
+            return user;
+        }
     }
 }

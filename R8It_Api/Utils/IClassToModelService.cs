@@ -10,10 +10,11 @@ namespace R8It_Api.Utils
 {
     public interface IClassToModelService
     {
-        public BaseUserModel ToBaseUserModel(User user);
+        BaseUserModel ToBaseUserModel(User user);
 
-        public FullUserModel GetFullUser(int id);
-        public CategoryModel ToCategoryModel(Category category);
-        public UploadModel ToUploadModel(Upload upload);
+        FullUserModel GetFullUser(int id);
+        CategoryModel ToCategoryModel(Category category);
+        UploadModel ToUploadModel(Upload upload);
+        User BaseModelToDbUser(BaseUserModel model);
     }
 }

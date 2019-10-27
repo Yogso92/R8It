@@ -8,6 +8,7 @@ form{
 .aligncontent{
     display: flex;
     flex-flow: row;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     nb-select{

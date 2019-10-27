@@ -5,8 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Country } from 'src/app/models/country';
 import { Observable } from 'rxjs';
 import { CountryService } from 'src/app/services/country.service';
-import { async } from 'rxjs/internal/scheduler/async';
-import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -64,9 +62,7 @@ export class RegisterComponent implements OnInit {
     }, 
     {validator : this.checkPasswords})
     this.countries = this.countryService.Get().pipe(map(data => {
-      for(let item of data){
-        console.log(item)
-      }
+      
       return data;
     }));
    }
@@ -74,8 +70,21 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   register(){
+    this.user = {
+      birthdate: this.form.get('birthdate').value,
+      nickname: this.form.get('nickname').value,
+      email: this.form.get('email').value,
+      password: this.form.get('password').value,
+      country:  this.form.get('country').value
+    };
+    this.user.birthdate= this.form.get('birthdate').value;
+    this.user.nickname= this.form.get('nickname').value;
+    this.user.email= this.form.get('email').value;
+    this.user.password= this.form.get('password').value;
+    this.user.country= this.form.get('country').value;
     this.loginService.register(this.user).subscribe(data => {
-      if(data.ok !== true  && data.body.id !== 0) this.loginService.login({Email : this.user.email, Password : this.user.password})
+      console.log(data)
+      if(data.id !== 0) this.loginService.login({Email : this.user.email, Password : this.user.password})
       else this.registerError = true;
     })
   }

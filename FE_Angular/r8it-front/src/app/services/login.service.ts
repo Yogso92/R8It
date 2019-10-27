@@ -22,17 +22,15 @@ export class LoginService {
 
   constructor(private httpClient : HttpClient) {this.logged= new BehaviorSubject(false)}
 
-  register(user : BaseUserModel) : Observable<HttpResponse<BaseUserModel>>{
+  register(user : BaseUserModel) : Observable<BaseUserModel>{
     let url : string = this._endpoint+"/register";
-    return this.httpClient.put<HttpResponse<BaseUserModel>>(url, user);
+    return this.httpClient.post<BaseUserModel>(url, user);
     
 
   }
   login(loginform : LoginFormModel) {
         
     let url : string = this._endpoint+ "/login"
-    console.log(loginform)
-    console.log(url)
     //this.httpClient.post<LoginAnswer>("https://localhost:44304/api/login", loginform).subscribe(data => console.log(data), error => console.log(error))
     this.httpClient.post<LoginAnswer>(url, loginform).subscribe(data => this.setSession(data.token))
     // return this.httpClient.post<LoginAnswer>(url, loginform)
@@ -43,13 +41,10 @@ export class LoginService {
   }
   private setSession(authResult : string){
     localStorage.setItem('id_token', authResult);
-    console.log(localStorage.getItem("id_token"))
     this.logged.next(true);
-    console.log("next true")
   }
   logout(){
     this.logged.next(false);
-    console.log(this.logged.value)
     localStorage.removeItem("id_token");
   }
 }

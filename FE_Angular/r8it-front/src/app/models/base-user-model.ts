@@ -1,12 +1,12 @@
 import { Country } from './country';
 
 export interface BaseUserModel {
-  id: number;
+  id?: number;
   nickname: string;
   birthdate: string;
   email: string;
   country: Country;
-  role: string;
-  token: string;
+  role?: string;
+  token?: string;
   password? : string;
 }

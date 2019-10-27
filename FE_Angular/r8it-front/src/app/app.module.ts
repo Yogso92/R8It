@@ -56,11 +56,11 @@ import { RegisterComponent } from './components/register/register.component';
   providers: 
   [
     LoginService,
-    {
-      provide: HTTP_INTERCEPTORS, 
-      useClass : TokenInterceptor, 
-      multi : true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS, 
+    //   useClass : TokenInterceptor, 
+    //   multi : true
+    // }
   ],
   bootstrap: [AppComponent]
 })

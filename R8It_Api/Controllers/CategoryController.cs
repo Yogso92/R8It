@@ -29,6 +29,7 @@ namespace R8It_Api.Controllers
         // GET: api/Category
         [HttpGet]
         [AllowAnonymous]
+        [EnableCors("AllowAnyRequest")]
         public IEnumerable<Category> Get()
         {
             return _CategoryService.GetAll();
@@ -62,5 +63,6 @@ namespace R8It_Api.Controllers
         {
             return;
         }
+        
     }
 }

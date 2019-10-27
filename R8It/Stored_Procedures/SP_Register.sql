@@ -5,10 +5,11 @@
 	@password VARCHAR(50),
 	@countryid INT
 AS
-	INSERT INTO [User] (Nickname, Birthdate, Email, [Password], CountryId) VALUES
+	INSERT INTO [User] (Nickname, Birthdate, Email, [Password], CountryId) 
+	OUTPUT inserted.Birthdate, inserted.CountryId, inserted.Email, inserted.Id, inserted.Nickname, inserted.RoleId
+	VALUES
 	(@nickname,
 	@birthdate,
 	@email,
 	dbo.Udf_Hash_Password(@password, @email),
 	@countryid)
-RETURN 1
