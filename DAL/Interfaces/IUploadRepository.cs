@@ -12,7 +12,7 @@ namespace DAL
     {
         DbUpload Get(int id);
         IEnumerable<DbUpload> GetAllFromUser(int id);
-
+        IEnumerable<DbUpload> GetAllFromCategory(int categoryId);
         IEnumerable<DbUpload> GetAll();
         DbUpload Update(DbUpload upload);
         bool Delete(int id);

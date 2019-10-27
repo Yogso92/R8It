@@ -42,6 +42,13 @@ namespace DAL
             cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>);
         }
+        public IEnumerable<DbUpload> GetAllFromCategory(int categoryId)
+        {
+            //TODO exclude uploads already voted on
+            Command cmd = new Command("SELECT * FROM Upload WHERE CategoryId = @categoryid");
+            cmd.AddParameter("categoryid", categoryId);
+            return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>);
+        }
 
         public IEnumerable<DbUpload> GetAll()
         {

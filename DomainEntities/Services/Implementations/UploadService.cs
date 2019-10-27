@@ -43,5 +43,9 @@ namespace R8It_Domain.Services.Implementations
         {
             return _uploadRepository.Update(upload.Map<DbUpload>()).Map<Upload>();
         }
+        public IEnumerable<Upload> GetAllFromCategory(int categoryId)
+        {
+            return _uploadRepository.GetAllFromCategory(categoryId).Select(u => u.Map<Upload>());
+        }
     }
 }

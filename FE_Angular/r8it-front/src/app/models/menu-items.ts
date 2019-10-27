@@ -1,5 +1,5 @@
 export interface MenuItem {
   title: string;
-  link: string;
+  link: string[];
   icon: string;
 }

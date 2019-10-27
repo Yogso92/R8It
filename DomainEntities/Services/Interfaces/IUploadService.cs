@@ -9,6 +9,7 @@ namespace R8It_Domain.Services.Interfaces
     {
         Upload Get(int id);
         IEnumerable<Upload> GetAllFromUser(int userId);
+        IEnumerable<Upload> GetAllFromCategory(int categoryId);
         bool Delete(int id);
         Upload Update(Upload upload);
         Upload Insert(Upload upload);

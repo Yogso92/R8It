@@ -31,7 +31,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   private mapCatToMenuItem(cat : Category){
-    return {title: cat.name, link: 'browse/'+cat.name, icon : cat.icon}
+    return {title: cat.name, link: ['browse/category/', cat.id.toString()], icon : cat.icon}
   }
 
 }

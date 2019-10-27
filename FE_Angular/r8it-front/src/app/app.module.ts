@@ -15,6 +15,7 @@ import { LoginService } from './services/login.service';
 import { LoggedTopbarComponent } from './components/logged-topbar/logged-topbar.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
     SideMenuComponent,
     LoggedTopbarComponent,
     UploadComponent,
-    RegisterComponent
+    RegisterComponent,
+    CategoryBrowseComponent
   ],
   imports: [
     BrowserModule,
