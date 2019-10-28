@@ -13,19 +13,20 @@ export class TokenInterceptor implements HttpInterceptor{
         req: HttpRequest<any>,
         next: HttpHandler) : Observable<HttpEvent<any>>
         {
-            if(req.url.includes(environment.apiurl) && !this.shouldBeIntercepted(req.url)  && localStorage.getItem("id_token"))
+            if(req.url.includes(environment.apiurl) && this.shouldBeIntercepted(req.url)  && localStorage.getItem("id_token"))
             {
                 req = req.clone({
                     setHeaders : {Authorization : `Bearer ${localStorage.getItem("id_token")}`}
                 });
+                console.log(localStorage.getItem("id_token"))
                 
             }
-            console.log(req)
             return next.handle(req);
         }
-    private shouldBeIntercepted(url : string){
+    private shouldBeIntercepted(url : string) : boolean{
         for(let item of this.listNoToken){
             if(url.includes(item)){
+                console.log(item)
                 return true;
             }
         }

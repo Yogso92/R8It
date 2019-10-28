@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { BaseUserModel } from '../models/base-user-model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +42,7 @@ export class LoginService {
   }
   private setSession(authResult : string){
     localStorage.setItem('id_token', authResult);
+    console.log(localStorage.getItem("id_token"))
     this.logged.next(true);
   }
   logout(){

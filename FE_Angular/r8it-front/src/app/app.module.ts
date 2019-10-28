@@ -58,11 +58,11 @@ import { CategoryBrowseComponent } from './components/category-browse/category-b
   providers: 
   [
     LoginService,
-    // {
-    //   provide: HTTP_INTERCEPTORS, 
-    //   useClass : TokenInterceptor, 
-    //   multi : true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass : TokenInterceptor, 
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })
