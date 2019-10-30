@@ -14,50 +14,50 @@ namespace TestAdo
     {
         static void Main(string[] args)
         {
-            
+            Environment.SetEnvironmentVariable("connectionString", @"Data Source=TECHNOBEL\;Initial Catalog=R8It;Persist Security Info=True;User ID=sa;Password=test1234=");
             #region test DALService OK
-           // first call should cw the add of CategoryService to the provider
-           // CategoryRepository service = Provider.GetService<CategoryRepository>();
-           // IRateChoiceRepository service1 = Provider.GetService<IRateChoiceRepository>();
+            // first call should cw the add of CategoryService to the provider
+            // CategoryRepository service = Provider.GetService<CategoryRepository>();
+            // IRateChoiceRepository service1 = Provider.GetService<IRateChoiceRepository>();
 
-           // IRateChoiceRepository service2 = Provider.GetService<IRateChoiceRepository>();
-           // testing multiple call to provider
-           //should NOT cw the add of CategoryService to the provider
-           //testSingleton test = new testSingleton();
-           // testSingleton test2 = new testSingleton();
+            // IRateChoiceRepository service2 = Provider.GetService<IRateChoiceRepository>();
+            // testing multiple call to provider
+            //should NOT cw the add of CategoryService to the provider
+            //testSingleton test = new testSingleton();
+            // testSingleton test2 = new testSingleton();
 
-           // testing the actual service
-           // foreach (DbCategory category in service.GetAll())
-           // {
-           //     Console.WriteLine(category.Name);
-           // }
+            // testing the actual service
+            // foreach (DbCategory category in service.GetAll())
+            // {
+            //     Console.WriteLine(category.Name);
+            // }
 
 
 
             #endregion
             #region test USerService 
             //TODO Update
-            UserRepository uservice = Provider.GetService<UserRepository>();
-            DbUser testReceive = uservice.Login("test@test.com", "testpw");
-            Console.WriteLine(testReceive.Nickname);
-            testReceive.Nickname = "test2";
-            testReceive.Email = "yolo@test.com";
-            testReceive.Password = "testpw";
-            uservice.Register(testReceive);
+            //UserRepository uservice = Provider.GetService<UserRepository>();
+            //DbUser testReceive = uservice.Login("test@test.com", "testpw");
+            //Console.WriteLine(testReceive.Nickname);
+            //testReceive.Nickname = "test2";
+            //testReceive.Email = "yolo@test.com";
+            //testReceive.Password = "testpw";
+            //uservice.Register(testReceive);
 
-            foreach (DbUser user in uservice.GetAll())
-            {
-                Console.WriteLine(user.Email);
-            }
+            //foreach (DbUser user in uservice.GetAll())
+            //{
+            //    Console.WriteLine(user.Email);
+            //}
             #endregion
             #region test CategoryService OK
-            CategoryRepository service = Provider.GetService<CategoryRepository>();
-            DbCategory category = new DbCategory
-            {
-                Name = "yolo2"
-            };
-            category = service.Insert(category);
-            Console.WriteLine(category.Id);
+            //CategoryRepository service = Provider.GetService<CategoryRepository>();
+            //DbCategory category = new DbCategory
+            //{
+            //    Name = "yolo2"
+            //};
+            //category = service.Insert(category);
+            //Console.WriteLine(category.Id);
             #endregion
             //#region test CountryService TODO
             //#endregion
@@ -93,8 +93,8 @@ namespace TestAdo
 
 
             //#endregion
-            //#region RatingServiceTest OK
-            //RatingTypeService service = serviceProvider.GetService<RatingTypeService>();
+            #region RatingServiceTest OK
+            //RatingTypeRepository service = Provider.GetService<RatingTypeRepository>();
             //service.Delete(1);
 
             //DbRatingType ratingType = new DbRatingType
@@ -106,7 +106,7 @@ namespace TestAdo
             //Console.WriteLine(ratingType.Id);
 
             //Console.WriteLine(service.GetAll().FirstOrDefault().Name);
-            //#endregion
+            #endregion
             //#region SubscriptionService OK 
             //SubscriptionService ss = serviceProvider.GetService<SubscriptionService>();
             //try
@@ -134,33 +134,40 @@ namespace TestAdo
             //    Console.WriteLine(cat.Name);
             //}
             //#endregion
-            //#region RateChoiceService
+            #region RateChoiceService
 
-            //RateChoiceService service = serviceProvider.GetService<RateChoiceService>();
-            //DbRateChoice choice = new DbRateChoice
-            //{
-            //    RatingTypeId = 2,
-            //    Text = "Yes",
-            //    Value = 10
-            //};
-            //try
-            //{
-            //    choice = service.Insert(choice);
-            //    choice = service.Insert(choice);
-            //    Console.WriteLine("insert pas ok");
-            //}
-            //catch (Exception)
-            //{
-            //    Console.WriteLine("insert ok");
-            //}
+            RateChoiceRepository service2 = Provider.GetService<RateChoiceRepository>();
+            DbRateChoice choice = new DbRateChoice
+            {
+                RatingTypeId = 1,
+                Text = "Yes",
+                Value = 10
+            };
+            DbRateChoice choice2 = new DbRateChoice
+            {
+                RatingTypeId = 1,
+                Text = "No",
+                Value = 0
+            };
+            try
+            {
+                choice = service2.Insert(choice);
+                choice = service2.Insert(choice2);
+                choice = service2.Insert(choice2);
+                Console.WriteLine("insert pas ok");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("insert ok");
+            }
 
-            //Console.WriteLine(choice.Id);
-            //foreach (DbRateChoice choice in service.GetChoices(1))
-            //{
-            //    Console.WriteLine($"{choice.Text} : {choice.Value}");
-            //}
+            Console.WriteLine(choice.Id);
+            foreach (DbRateChoice choicee in service2.GetChoices(1))
+            {
+                Console.WriteLine($"{choicee.Text} : {choicee.Value}");
+            }
 
-            //#endregion
+            #endregion
             //#region UploadService OK
             //UploadService service = serviceProvider.GetService<UploadService>();
             //DbUpload upload = new DbUpload

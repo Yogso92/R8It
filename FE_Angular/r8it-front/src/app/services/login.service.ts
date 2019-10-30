@@ -19,7 +19,15 @@ export class LoginService {
   }
   
   private _endpoint : string = environment.apiurl;
-
+  
+  private _user : LoginAnswer;
+  public get user() : LoginAnswer {
+    return this._user;
+  }
+  public set user(v : LoginAnswer) {
+    this._user = v;
+  }
+  
 
   constructor(private httpClient : HttpClient) {this.logged= new BehaviorSubject(false)}
 
@@ -33,13 +41,18 @@ export class LoginService {
         
     let url : string = this._endpoint+ "/login"
     //this.httpClient.post<LoginAnswer>("https://localhost:44304/api/login", loginform).subscribe(data => console.log(data), error => console.log(error))
-    this.httpClient.post<LoginAnswer>(url, loginform).subscribe(data => this.setSession(data.token))
+    this.httpClient.post<LoginAnswer>(url, loginform)
+                  .subscribe(data => {
+                    this.setSession(data.token);
+                    this.user = data
+                  })
     // return this.httpClient.post<LoginAnswer>(url, loginform)
     //   .pipe(map(user => {
     //     this.setSession(user.token);
     //     return user;
     // }))
   }
+
   private setSession(authResult : string){
     localStorage.setItem('id_token', authResult);
     console.log(localStorage.getItem("id_token"))

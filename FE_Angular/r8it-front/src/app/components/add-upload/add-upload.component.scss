@@ -1,0 +1,15 @@
+nb-card-header{
+    text-align: center;
+    font-size: 1.5em;
+}
+.aligncontent{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    nb-select{
+        margin-left : 20px;
+        margin-right: 20px;
+    }
+}

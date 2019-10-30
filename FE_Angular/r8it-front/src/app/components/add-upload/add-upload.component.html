@@ -1,0 +1,22 @@
+<nb-card status="primary">
+    <nb-card-header>
+        File upload form
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup] = "form" class="aligncontent" (ngSubmit)="submit(this.form.value)">
+            <input nbInput formControlName="Context" type="text" placeholder="Context" />
+            <nb-select formControlName = "CategoryId">
+                <nb-option *ngFor="let item of categories | async" [value]="item.id" >
+                    {{item.name}}
+                </nb-option>
+            </nb-select>
+            <input type="file" (change)="onFileChange($event)" #fileInput/>
+            <nb-select formControlName = "RatingTypeId">
+                <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" >
+                    {{item.name}}
+                </nb-option>
+            </nb-select>
+            <input nbInput type="submit" value ="Ask"/>
+        </form>
+    </nb-card-body>
+</nb-card>

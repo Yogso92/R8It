@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./logged-topbar.component.scss']
 })
 export class LoggedTopbarComponent implements OnInit {
-
+  
   constructor(private loginService : LoginService, private router : Router) { }
 
   ngOnInit() {

@@ -38,12 +38,12 @@ namespace R8It_Api.Controllers
         }
 
         // GET: api/Category/5
-        [HttpGet("{n}", Name = "Get")]
-        [Authorize]
-        public IEnumerable<Upload> GetUploadsFromCategory(int n)
-        {
-            return _UploadService.GetAllFromCategory(n);
-        }
+        //[HttpGet("{n}", Name = "Get")]
+        //[Authorize]
+        //public IEnumerable<Upload> GetUploadsFromCategory(int n)
+        //{
+        //    return _UploadService.GetAllFromCategory(n);
+        //}
 
         // POST: api/Category
         [HttpPost]

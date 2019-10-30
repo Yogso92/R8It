@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class TokenInterceptor implements HttpInterceptor{
-    private listNoToken : string[] = ["login", "register", "category", "country"]
+    private listNoToken : string[] = ["login", "register", "country"]
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler) : Observable<HttpEvent<any>>
@@ -18,7 +18,6 @@ export class TokenInterceptor implements HttpInterceptor{
                 req = req.clone({
                     setHeaders : {Authorization : `Bearer ${localStorage.getItem("id_token")}`}
                 });
-                console.log(localStorage.getItem("id_token"))
                 
             }
             return next.handle(req);
@@ -27,9 +26,9 @@ export class TokenInterceptor implements HttpInterceptor{
         for(let item of this.listNoToken){
             if(url.includes(item)){
                 console.log(item)
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

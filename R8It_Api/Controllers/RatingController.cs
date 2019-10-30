@@ -21,7 +21,7 @@ namespace R8It_Api.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [AllowAnonymous]
         public IEnumerable<RatingType> GetAll()
         {
             return _ratingService.GetAll();

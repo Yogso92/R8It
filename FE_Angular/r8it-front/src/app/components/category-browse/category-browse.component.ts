@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UploadModel } from 'src/app/models/upload';
 import { CategoryService } from 'src/app/services/category.service';
 import { map } from 'rxjs/operators';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-category-browse',
@@ -11,7 +12,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./category-browse.component.scss']
 })
 export class CategoryBrowseComponent implements OnInit {
-  private categoryId : number;
+  public categoryId : number;
   
   private _uploads : Observable<Array<UploadModel>>;
   public get uploads() : Observable<Array<UploadModel>> {
@@ -22,12 +23,12 @@ export class CategoryBrowseComponent implements OnInit {
   }
   
 
-  constructor(private router : ActivatedRoute, private categoryService : CategoryService) { }
+  constructor(private router : ActivatedRoute, private uploadService : UploadService) { }
 
   ngOnInit() {
     this.router.paramMap.subscribe(data => {
       this.categoryId = parseInt(data.get('categoryId'))
-      this.uploads = this.categoryService.getAllFromCategory(this.categoryId).pipe(map(item => {console.log(item); return item}))
+      this.uploads = this.uploadService.getAllFromCategory(this.categoryId).pipe(map(item => {console.log(item); return item}))
     });
     
   }

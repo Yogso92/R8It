@@ -16,6 +16,7 @@ import { LoggedTopbarComponent } from './components/logged-topbar/logged-topbar.
 import { UploadComponent } from './components/upload/upload.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
+import { AddUploadComponent } from './components/add-upload/add-upload.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CategoryBrowseComponent } from './components/category-browse/category-b
     LoggedTopbarComponent,
     UploadComponent,
     RegisterComponent,
-    CategoryBrowseComponent
+    CategoryBrowseComponent,
+    AddUploadComponent
   ],
   imports: [
     BrowserModule,

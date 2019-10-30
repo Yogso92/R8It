@@ -19,9 +19,6 @@ export class CategoryService {
       return data
     }));
   }
-  public getAllFromCategory(categoryId : number) : Observable<Array<UploadModel>>{
-    const url : string = this._endpoint + "/"+categoryId.toString();
-    return this.http.get<Array<UploadModel>>(url);
-  }
+  
   
 }

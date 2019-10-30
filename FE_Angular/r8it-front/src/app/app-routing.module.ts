@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
+import { AddUploadComponent } from './components/add-upload/add-upload.component';
 
 
 const routes: Routes = [
@@ -17,8 +18,13 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "upload",
-    component: UploadComponent
+    path: 'upload/new',
+    component : AddUploadComponent
+  },
+  {
+    path: "uploads",
+    component: UploadComponent,
+    pathMatch : 'full'
   }
   ,
   {
