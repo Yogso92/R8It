@@ -25,7 +25,7 @@ export class TokenInterceptor implements HttpInterceptor{
     private shouldBeIntercepted(url : string) : boolean{
         for(let item of this.listNoToken){
             if(url.includes(item)){
-                console.log(item)
+                console.log(item+" found, interception aborted")
                 return false;
             }
         }

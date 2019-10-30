@@ -23,7 +23,6 @@ export class AppComponent {
   
   constructor(private loginService : LoginService){
     this.isLogged = this.loginService.isLogged;
-    console.log(this.isLogged.subscribe(data => console.log(data)))
   }
 
 }

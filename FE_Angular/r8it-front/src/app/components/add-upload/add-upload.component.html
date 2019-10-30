@@ -3,7 +3,7 @@
         File upload form
     </nb-card-header>
     <nb-card-body>
-        <form [formGroup] = "form" class="aligncontent" (ngSubmit)="submit(this.form.value)">
+        <!-- <form [formGroup] = "form" class="aligncontent" (ngSubmit)="submit(this.form.value)">
             <input nbInput formControlName="Context" type="text" placeholder="Context" />
             <nb-select formControlName = "CategoryId">
                 <nb-option *ngFor="let item of categories | async" [value]="item.id" >
@@ -17,6 +17,49 @@
                 </nb-option>
             </nb-select>
             <input nbInput type="submit" value ="Ask"/>
-        </form>
+        </form> -->
+
+        <nb-stepper #stepper>
+            <nb-step [stepControl]="firstStep" label ="Choose a picture">
+                <form [formGroup] = "firstStep" (ngSubmit) = "firstStepComplete()">
+                    <p>{{firstStep.get("File")?.value}}</p>
+                    <input nbInput type="file" (change)="onFileChange($event)" #fileInput/>
+                    <button nbButton nbStepperNext>What next?</button>
+                </form>
+            </nb-step>
+
+            <nb-step [stepControl]="secondStep" label ="Context and category">
+                <form [formGroup] = "secondStep" (ngSubmit) = "secondStepComplete()">
+                    <nb-select formControlName = "CategoryId">
+                        <nb-option *ngFor="let item of categories | async" [value]="item.id" >
+                            {{item.name}}
+                        </nb-option>
+                    </nb-select>
+                    <input nbInput formControlName="Context" 
+                            nbTooltip="Tip: Enter a meaningful but short text. E.g. : Clothes brand logo, Music magazine layout, etc." 
+                            type="text" placeholder="Type your context here"/>
+                    <button nbButton nbStepperPrevious>Back</button>
+                    <button nbButton nbStepperNext>And now?</button>
+                </form>
+            </nb-step>
+
+            <nb-step [stepControl] ="thirdStep" label ="Voting ">
+                <form [formGroup] ="thirdStep" (ngSubmit) ="thirdStepComplete()">
+                    <nb-select formControlName = "RatingTypeId">
+                        <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" >
+                            {{item.name}}
+                        </nb-option>
+                    </nb-select>
+                    <button nbButton nbStepperPrevious>Back</button>
+                    <input nbButton type="submit" value="Submit my request" />
+                </form>
+            </nb-step>
+            <nb-step label = "All done!" [hidden]="true">
+                <div>
+                    loading animation
+                </div>
+            </nb-step>
+
+        </nb-stepper>
     </nb-card-body>
 </nb-card>

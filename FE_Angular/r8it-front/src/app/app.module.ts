@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule, NbPopoverModule, NbAlertModule, NbSelectModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbButtonModule, NbInputModule, NbListModule, NbCardModule, NbIconModule, NbDialogModule, NbSpinnerModule, NbUserModule, NbPopoverModule, NbAlertModule, NbSelectModule, NbStepperModule, NbTooltipModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -55,7 +55,9 @@ import { AddUploadComponent } from './components/add-upload/add-upload.component
     NbPopoverModule,
     NbAlertModule,
     ReactiveFormsModule,
-    NbSelectModule
+    NbSelectModule,
+    NbStepperModule,
+    NbTooltipModule
   ],
   providers: 
   [

@@ -16,13 +16,34 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AddUploadComponent implements OnInit {
 
   
-  private _form : FormGroup;
-  public get form() : FormGroup {
-    return this._form;
+  
+  private _firstStep : FormGroup;
+  public get firstStep() : FormGroup {
+    return this._firstStep;
   }
-  public set form(v : FormGroup) {
-    this._form = v;
+  public set firstStep(v : FormGroup) {
+    this._firstStep = v;
   }
+
+  
+  private _secondStep : FormGroup;
+  public get secondStep() : FormGroup {
+    return this._secondStep;
+  }
+  public set secondStep(v : FormGroup) {
+    this._secondStep = v;
+  }
+  
+  private _thirdStep : FormGroup;
+  public get thirdStep() : FormGroup {
+    return this._thirdStep;
+  }
+  public set thirdStep(v : FormGroup) {
+    this._thirdStep = v;
+  }
+  
+  
+  
   
   private _ratingTypes : Observable<Array<RatingType>>;
   public get ratingTypes() : Observable<Array<RatingType>> {
@@ -40,15 +61,32 @@ export class AddUploadComponent implements OnInit {
     this._categories = v;
   }
   
+  private _fileUploading : boolean;
+  public get fileUploading() : boolean {
+    return this._fileUploading;
+  }
+  public set fileUploading(v : boolean) {
+    this._fileUploading = v;
+  }
+  
+  
   
   
   constructor(private uploadService : UploadService, private formBuilder : FormBuilder, private ratingService : RatingService,  private loginService : LoginService, private categoryService : CategoryService) {
-    this.form = this.formBuilder.group({
-      Context : ['', Validators.minLength(7)],
-      CategoryId: ['', Validators.required],
-      File: ['', Validators.required], 
-      RatingTypeId : [ Validators.required]
+    
+
+    this.firstStep = this.formBuilder.group({
+      File : ['', Validators.required]
     });
+
+    this.secondStep = this.formBuilder.group({
+      Context : ['', Validators.minLength(5) ],
+      CategoryId : ['', Validators.required]
+    })
+
+    this.thirdStep = this.formBuilder.group({
+      RatingTypeId : ['', Validators.required]
+    })
 
    }
   ngOnInit() {
@@ -62,20 +100,45 @@ export class AddUploadComponent implements OnInit {
     model.Deleted = false;
     model.Id = 0;
     model.Active = true;
+    model.Result = 0;
+    model.LimitDate = model.UploadDate;
+    console.log("sending")
     this.uploadService.insert(model).subscribe(data => console.log(data), error => console.log(error));
     
     
   }
+
+  firstStepComplete(){
+    this.firstStep.markAsDirty();
+  }
+
+  secondStepComplete(){
+    this.secondStep.markAsDirty();
+  }
+
+  thirdStepComplete(){
+    this.thirdStep.markAsDirty();
+    let model : UploadModel = {
+      CategoryId : this.secondStep.get('CategoryId').value,
+      Context : this.secondStep.get('Context').value,
+      FileString : this.firstStep.get('File').value,
+      File : null,
+      RatingTypeId: this.thirdStep.get('RatingTypeId').value
+    }
+    console.log("third step ok")
+    this.submit(model);
+  }
+
+
   onFileChange(event) {
     let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.form.get('File').setValue(
+        this.firstStep.get('File').setValue(
           reader.result.toString().split(',')[1]
         );
-        console.log(this.form.get('File').value);
         
       };
     }

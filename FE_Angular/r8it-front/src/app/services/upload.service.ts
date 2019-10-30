@@ -19,10 +19,8 @@ export class UploadService  {
       return data
     }));
   }
-  public insert(upload : UploadModel){
-    console.log(upload);
-    
-    this.http.post<UploadModel>(this.url, upload).subscribe(data => console.log(data), error => console.log(error))
+  public insert(upload : UploadModel) : Observable<boolean>{
+    return this.http.post<boolean>(this.url, upload);
     
   }
   public getAllFromCategory(categoryId : number) : Observable<Array<UploadModel>>{

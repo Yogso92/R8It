@@ -32,27 +32,27 @@ namespace DAL
 
         public DbUpload Get(int id)
         {
-            Command cmd = new Command("SELECT * FROM Upload WHERE Id = @id");
+            Command cmd = new Command("SELECT * FROM Upload WHERE Id = @id AND Deleted != 1");
             cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>).FirstOrDefault();
         }
         public IEnumerable<DbUpload> GetAllFromUser(int id)
         {
-            Command cmd = new Command("SELECT * FROM Upload WHERE UserId = @id");
+            Command cmd = new Command("SELECT * FROM Upload WHERE UserId = @id AND Deleted != 1");
             cmd.AddParameter("id", id);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>);
         }
         public IEnumerable<DbUpload> GetAllFromCategory(int categoryId)
         {
             //TODO exclude uploads already voted on
-            Command cmd = new Command("SELECT * FROM Upload WHERE CategoryId = @categoryid");
+            Command cmd = new Command("SELECT * FROM Upload WHERE CategoryId = @categoryid AND Deleted != 1");
             cmd.AddParameter("categoryid", categoryId);
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>);
         }
 
         public IEnumerable<DbUpload> GetAll()
         {
-            Command cmd = new Command("SELECT * FROM Upload");
+            Command cmd = new Command("SELECT * FROM Upload WHERE Deleted != 1");
             return _connection.ExecuteReader(cmd, UniversalDbToEntityMapper.Mapper<DbUpload>);
         }
 

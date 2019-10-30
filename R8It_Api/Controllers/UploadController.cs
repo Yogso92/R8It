@@ -45,11 +45,21 @@ namespace R8It_Api.Controllers
         }
         [Authorize]
         [HttpPost]
-        public Upload Insert([FromBody] UploadModel model)
+        public bool Insert([FromBody] UploadModel model)
         {
             model.UploadDate = DateTime.Now;
             model.LimitDate = DateTime.Now.AddDays(7);
-            return _uploadService.Insert(model.Map<Upload>());
+            model.File = Encoding.UTF8.GetBytes(model.FileString);
+            try
+            {
+                _uploadService.Insert(model.Map<Upload>());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
         }
 
     }
