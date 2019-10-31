@@ -13,3 +13,24 @@ nb-card-header{
         margin-right: 20px;
     }
 }
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    width: 100%;
+    margin-left: auto;
+}
+
+.preview{
+    max-width: 80%;
+    margin: auto;
+    
+}
+.alignvertical{
+    display: flex;
+    flex-flow: column;
+    max-width: 90%; 
+    align-items: center;
+    margin: auto;
+}

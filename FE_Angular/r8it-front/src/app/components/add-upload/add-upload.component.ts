@@ -7,6 +7,7 @@ import { RatingService } from 'src/app/services/rating.service';
 import { RatingType } from 'src/app/models/rating-type';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-upload',
@@ -72,7 +73,12 @@ export class AddUploadComponent implements OnInit {
   
   
   
-  constructor(private uploadService : UploadService, private formBuilder : FormBuilder, private ratingService : RatingService,  private loginService : LoginService, private categoryService : CategoryService) {
+  constructor(private uploadService : UploadService, 
+              private formBuilder : FormBuilder, 
+              private ratingService : RatingService,  
+              private loginService : LoginService, 
+              private categoryService : CategoryService,
+              private router : Router) {
     
 
     this.firstStep = this.formBuilder.group({
