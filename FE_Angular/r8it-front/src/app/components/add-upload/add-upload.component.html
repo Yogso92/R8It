@@ -3,66 +3,52 @@
         File upload form
     </nb-card-header>
     <nb-card-body>
-        <!-- <form [formGroup] = "form" class="aligncontent" (ngSubmit)="submit(this.form.value)">
-            <input nbInput formControlName="Context" type="text" placeholder="Context" />
-            <nb-select formControlName = "CategoryId">
-                <nb-option *ngFor="let item of categories | async" [value]="item.id" >
-                    {{item.name}}
-                </nb-option>
-            </nb-select>
-            <input type="file" (change)="onFileChange($event)" #fileInput/>
-            <nb-select formControlName = "RatingTypeId">
-                <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" >
-                    {{item.name}}
-                </nb-option>
-            </nb-select>
-            <input nbInput type="submit" value ="Ask"/>
-        </form> -->
-
         <nb-stepper #stepper>
             <nb-step [stepControl]="firstStep" label ="Choose a picture">
                 <form class="alignvertical" [formGroup] = "firstStep" (ngSubmit) = "firstStepComplete()">
-                    <img class = "preview" [src] = '"data:image/png;base64,"+firstStep.get("File")?.value'/>
+                    <img *ngIf="firstStep.get('file') != undefined " class = "preview" [src] = '"data:image/png;base64,"+firstStep.get("file").value'/>
                     <input nbInput type="file" (change)="onFileChange($event)" #fileInput/>
                     <div class="footer">
                         <button nbButton (click)="router.navigate(['/'])">Cancel</button>
-                        <button nbButton nbStepperNext>What next?</button>
+                        <button nbButton nbStepperNext [disabled] = "!firstStep.valid">What next?</button>
                     </div>
                 </form>
             </nb-step>
 
             <nb-step [stepControl]="secondStep" label ="Context and category">
-                <form [formGroup] = "secondStep" (ngSubmit) = "secondStepComplete()">
-                    <nb-select formControlName = "CategoryId">
+                <form class="alignvertical" [formGroup] = "secondStep" (ngSubmit) = "secondStepComplete()">
+                    <h3>Select a category: </h3>
+                    <nb-select formControlName = "categoryId">
                         <nb-option *ngFor="let item of categories | async" [value]="item.id" >
                             {{item.name}}
                         </nb-option>
                     </nb-select>
-                    <input nbInput formControlName="Context" 
+                    <input nbInput formControlName="context" 
                             nbTooltip="Tip: Enter a meaningful but short text. E.g. : Clothes brand logo, Music magazine layout, etc." 
-                            type="text" placeholder="Type your context here"/>
+                            type="text" placeholder="Type your context here" nbTooltipStatus="primary" />
                     <div class="footer">
                         <button nbButton nbStepperPrevious>Back</button>
-                        <button nbButton nbStepperNext>And now?</button>
+                        <button nbButton nbStepperNext [disabled] = "!firstStep.valid">And now?</button>
                     </div>
                 </form>
             </nb-step>
 
-            <nb-step [stepControl] ="thirdStep" label ="Voting ">
-                <form [formGroup] ="thirdStep" (ngSubmit) ="thirdStepComplete()">
-                    <nb-select formControlName = "RatingTypeId">
-                        <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" >
+            <nb-step [stepControl] ="thirdStep" label ="Voting type">
+                <form class="alignvertical" [formGroup] ="thirdStep" (ngSubmit) ="thirdStepComplete()">
+                    <h3>Pick a voting type.</h3>
+                    <nb-select formControlName = "ratingTypeId">
+                        <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" nbTooltip="{{item.definition}}" nbTooltipPlacement="right" nbTooltipStatus="primary">
                             {{item.name}}
                         </nb-option>
                     </nb-select>
                     <div class="footer">
                         <button nbButton nbStepperPrevious>Back</button>
-                        <input nbButton type="submit" value="Submit my request" />
+                        <input nbButton [disabled] = "!firstStep.valid" type="submit" value="Submit my request" />
                     </div>
                 </form>
             </nb-step>
             <nb-step label = "All done!" [hidden]="true">
-                <div>
+                <div class="alignvertical">
                     loading animation
                 </div>
             </nb-step>

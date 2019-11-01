@@ -1,0 +1,13 @@
+
+.alignvertical{
+    display: flex;
+    flex-flow: column;
+    max-width: 90%; 
+    align-items: center;
+    margin: auto;
+}
+
+nb-select, button{
+    margin-top : 10px;
+    margin-bottom: 10px;
+}   

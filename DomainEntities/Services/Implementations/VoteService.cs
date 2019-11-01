@@ -42,5 +42,9 @@ namespace R8It_Domain.Services.Implementations
                 yield return retour;
             }
         }
+        public bool HasVoted(int userId, int uploadId)
+        {
+            return VoteRepository.GetVotes(uploadId).Where(v => v.Id == userId).FirstOrDefault() != null;
+        }
     }
 }

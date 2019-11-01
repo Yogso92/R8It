@@ -17,6 +17,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
 import { AddUploadComponent } from './components/add-upload/add-upload.component';
+import { VoteComponent } from './components/vote/vote.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddUploadComponent } from './components/add-upload/add-upload.component
     UploadComponent,
     RegisterComponent,
     CategoryBrowseComponent,
-    AddUploadComponent
+    AddUploadComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,

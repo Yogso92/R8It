@@ -26,5 +26,11 @@ namespace R8It_Api.Controllers
         {
             return _ratingService.GetAll();
         }
+        [HttpGet("{n}")]
+        [AllowAnonymous]
+        public RatingType Get(int n)
+        {
+            return _ratingService.Get(n);
+        }
     }
 }

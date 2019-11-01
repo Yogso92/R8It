@@ -1,0 +1,25 @@
+.preview{
+    max-width: 80%;
+    margin: auto;
+    
+}
+nb-card-body{
+    display: flex;
+    flex-flow: column;
+    max-width: 90%; 
+    align-items: center;
+    margin: auto;
+}
+nb-card-back{
+    height: 100%;
+    nb-card, nb-card>nb-card-body{
+        height: 100%;
+    }
+}
+.alignvertical{
+    display: flex;
+    flex-flow: column;
+    max-width: 90%; 
+    align-items: center;
+    margin: auto;
+}

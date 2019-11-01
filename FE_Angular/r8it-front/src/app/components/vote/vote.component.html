@@ -1,0 +1,9 @@
+<form *ngIf="!(hasVoted | async)" [formGroup]="form" class="alignvertical">
+    <nb-select formControlName="rateChoiceId" >
+        <nb-option *ngFor="let choice of (ratingType | async).rateChoices" value = "{{choice.id}}">
+            {{choice.text}}
+        </nb-option>
+    </nb-select>
+    <button nbButton [disabled]="!form.valid" (click)="submitVote(form.value)">Vote</button>
+</form>
+<div *ngIf="hasvoted |async" >YOLO</div>

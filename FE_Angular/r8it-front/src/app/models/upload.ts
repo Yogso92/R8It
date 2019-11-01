@@ -1,16 +1,16 @@
 export interface UploadModel
 {
-    Id? : number,
-    UploadDate? : Date,
-    Context : string,
-    UserId? : number,
-    CategoryId : number,
-    File?: any,
-    RatingTypeId : number,
-    Anonymous? : boolean,
-    Active? : boolean,
-    Deleted? : boolean,
-    Result? : number,
-    FileString : string,
-    LimitDate? : Date
+    id? : number,
+    uploadDate? : Date,
+    context : string,
+    userId? : number,
+    categoryId : number,
+    file?: any,
+    ratingTypeId : number,
+    anonymous? : boolean,
+    active? : boolean,
+    deleted? : boolean,
+    result? : number,
+    fileString : string,
+    limitDate? : Date
 }

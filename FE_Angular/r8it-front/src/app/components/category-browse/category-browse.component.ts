@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UploadModel } from 'src/app/models/upload';
-import { CategoryService } from 'src/app/services/category.service';
-import { map } from 'rxjs/operators';
 import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
@@ -28,7 +26,8 @@ export class CategoryBrowseComponent implements OnInit {
   ngOnInit() {
     this.router.paramMap.subscribe(data => {
       this.categoryId = parseInt(data.get('categoryId'))
-      this.uploads = this.uploadService.getAllFromCategory(this.categoryId).pipe(map(item => {console.log(item); return item}))
+      this.uploads = this.uploadService.getAllFromCategory(this.categoryId)
+      
     });
     
   }

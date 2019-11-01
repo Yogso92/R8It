@@ -73,6 +73,8 @@ export class AddUploadComponent implements OnInit {
   
   
   
+  
+  
   constructor(private uploadService : UploadService, 
               private formBuilder : FormBuilder, 
               private ratingService : RatingService,  
@@ -82,16 +84,16 @@ export class AddUploadComponent implements OnInit {
     
 
     this.firstStep = this.formBuilder.group({
-      File : ['', Validators.required]
+      file : ['', Validators.required]
     });
 
     this.secondStep = this.formBuilder.group({
-      Context : ['', Validators.minLength(5) ],
-      CategoryId : ['', Validators.required]
+      context : ['', Validators.minLength(5) ],
+      categoryId : ['', Validators.required]
     })
 
     this.thirdStep = this.formBuilder.group({
-      RatingTypeId : ['', Validators.required]
+      ratingTypeId : ['', Validators.required]
     })
 
    }
@@ -100,14 +102,14 @@ export class AddUploadComponent implements OnInit {
     this.categories = this.categoryService.GetAll();
   }
   submit(model : UploadModel){
-    model.UserId = this.loginService.user.id;
-    model.UploadDate = new Date();
-    model.Anonymous = false;
-    model.Deleted = false;
-    model.Id = 0;
-    model.Active = true;
-    model.Result = 0;
-    model.LimitDate = model.UploadDate;
+    model.userId = this.loginService.user.id;
+    model.uploadDate = new Date();
+    model.anonymous = false;
+    model.deleted = false;
+    model.id = 0;
+    model.active = true;
+    model.result = 0;
+    model.limitDate = model.uploadDate;
     console.log("sending")
     this.uploadService.insert(model).subscribe(data => console.log(data), error => console.log(error));
     
@@ -125,11 +127,11 @@ export class AddUploadComponent implements OnInit {
   thirdStepComplete(){
     this.thirdStep.markAsDirty();
     let model : UploadModel = {
-      CategoryId : this.secondStep.get('CategoryId').value,
-      Context : this.secondStep.get('Context').value,
-      FileString : this.firstStep.get('File').value,
-      File : null,
-      RatingTypeId: this.thirdStep.get('RatingTypeId').value
+      categoryId : this.secondStep.get('categoryId').value,
+      context : this.secondStep.get('context').value,
+      fileString : this.firstStep.get('file').value,
+      file : null,
+      ratingTypeId: this.thirdStep.get('ratingTypeId').value
     }
     console.log("third step ok")
     this.submit(model);
@@ -142,13 +144,11 @@ export class AddUploadComponent implements OnInit {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.firstStep.get('File').setValue(
+        this.firstStep.get('file').setValue(
           reader.result.toString().split(',')[1]
         );
         
       };
     }
-    
-    
   }
 }

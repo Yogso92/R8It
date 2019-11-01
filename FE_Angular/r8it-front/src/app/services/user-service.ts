@@ -2,10 +2,6 @@ import {environment} from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Subject, Observable} from "rxjs";
-import LoginFormModel from '../models/login-form-model';
-import { LoginAnswer } from '../models/login-answer';
-import * as moment from 'moment';
-import {map} from 'rxjs/operators'
 
 
 @Injectable({

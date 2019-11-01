@@ -9,14 +9,18 @@ import { RatingType } from '../models/rating-model';
   providedIn: 'root'
 })
 export class RatingService  {
-  private url : string = environment.apiurl+"/Rating"
+  private _endpoint : string = environment.apiurl+"/Rating"
   constructor(private http : HttpClient) { }
 
   public getAll() : Observable<any>
   {
-    return this.http.get<Array<RatingType>>(this.url).pipe(map(
+    return this.http.get<Array<RatingType>>(this._endpoint).pipe(map(
       data => {console.log(data); 
       return data
     }));
+  }
+  public get(id : number) : Observable<RatingType>{
+    const url : string = this._endpoint+"/"+id.toString()
+    return this.http.get<RatingType>(url)
   }
 }
