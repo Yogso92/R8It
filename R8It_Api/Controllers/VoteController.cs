@@ -6,7 +6,9 @@ using DomainEntities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using R8It_Api.Models;
 using R8It_Domain.Services.Interfaces;
+using Tools;
 
 namespace R8It_Api.Controllers
 {   
@@ -20,15 +22,15 @@ namespace R8It_Api.Controllers
             _voteService = voteService;
         }
         [HttpPost]
-        public IEnumerable<Vote> Submit(Vote vote)
+        public IEnumerable<VoteModel> Submit([FromBody]VoteModel vote)
         {
-            _voteService.AddVote(vote);
-            return _voteService.GetVotes(vote.UploadId);
+            _voteService.AddVote(vote.Map<Vote>());
+            return _voteService.GetVotes(vote.UploadId).Select(v => v.Map<VoteModel>());
         }
-        [HttpGet("hasvoted/{userId}/{uploadId}")]
-        public bool HasVoted(int userId, int uploadId)
+        [HttpGet("canvote/{userId}/{uploadId}")]
+        public bool CanVote(int userId, int uploadId)
         {
-            return _voteService.HasVoted(userId, uploadId);
+            return _voteService.CanVote(userId, uploadId);
         }
     }
 }

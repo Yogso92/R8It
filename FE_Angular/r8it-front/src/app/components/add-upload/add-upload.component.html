@@ -34,7 +34,7 @@
             </nb-step>
 
             <nb-step [stepControl] ="thirdStep" label ="Voting type">
-                <form class="alignvertical" [formGroup] ="thirdStep" (ngSubmit) ="thirdStepComplete()">
+                <form class="alignvertical" [formGroup] ="thirdStep">
                     <h3>Pick a voting type.</h3>
                     <nb-select formControlName = "ratingTypeId">
                         <nb-option *ngFor="let item of ratingTypes | async" [value]="item.id" nbTooltip="{{item.definition}}" nbTooltipPlacement="right" nbTooltipStatus="primary">
@@ -43,13 +43,16 @@
                     </nb-select>
                     <div class="footer">
                         <button nbButton nbStepperPrevious>Back</button>
-                        <input nbButton [disabled] = "!firstStep.valid" type="submit" value="Submit my request" />
+                        <button nbButton nbStepperNext [disabled] = "!firstStep.valid" type="submit" (click)="thirdStepComplete()">Submit my request </button>
                     </div>
                 </form>
             </nb-step>
-            <nb-step label = "All done!" [hidden]="true">
-                <div class="alignvertical">
+            <nb-step [stepControl]="thirdStep" label = "All done!" [hidden]="true">
+                <div *ngIf="sending" class="alignvertical">
                     loading animation
+                </div>
+                <div *ngIf="!sending" class="alignvertical">
+                    sent
                 </div>
             </nb-step>
 

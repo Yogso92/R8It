@@ -18,6 +18,7 @@ export class TokenInterceptor implements HttpInterceptor{
                 req = req.clone({
                     setHeaders : {Authorization : `Bearer ${localStorage.getItem("id_token")}`}
                 });
+                console.log(req)
                 
             }
             return next.handle(req);

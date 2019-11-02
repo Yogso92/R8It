@@ -10,7 +10,7 @@ namespace R8It_Domain.Services.Interfaces
         IEnumerable<Vote> GetVotes(int uploadId);
         Vote AddVote(Vote vote);
         double GetResult(int uploadId);
-        bool HasVoted(int userId, int uploadId);
+        bool CanVote(int userId, int uploadId);
 
     }
 }

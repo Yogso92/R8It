@@ -13,10 +13,12 @@ export class VoteService {
   constructor(private http : HttpClient) { }
 
   public submit(vote : VoteModel) : Observable<Array<VoteModel>>{
+    console.log(vote);
+    
     return this.http.post<Array<VoteModel>>(this._endpoint, vote)
   }
-  public hasVoted(userId : number, uploadId : number) : Observable<boolean>{
-    const url : string = this._endpoint + "/hasvoted/"+userId.toString()+"/"+uploadId.toString();
+  public canVote(userId : number, uploadId : number) : Observable<boolean>{
+    const url : string = this._endpoint + "/canvote/"+userId.toString()+"/"+uploadId.toString();
     return this.http.get<boolean>(url);
   }
 

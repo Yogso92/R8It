@@ -14,12 +14,14 @@ namespace R8It_Domain.Services.Implementations
     {
         private readonly IVoteRepository VoteRepository;
         private readonly IUserRepository UserRepository;
+        private readonly IUploadRepository _uploadRepository;
         private readonly IRateChoiceRepository RateChoiceRepository;
-        public VoteService(IVoteRepository voteRepository, IUserRepository userRepository, IRateChoiceRepository rateChoiceRepository)
+        public VoteService(IVoteRepository voteRepository, IUserRepository userRepository, IRateChoiceRepository rateChoiceRepository, IUploadRepository uploadRepository)
         {
             VoteRepository = voteRepository;
             UserRepository = userRepository;
             RateChoiceRepository = rateChoiceRepository;
+            _uploadRepository = uploadRepository;
         }
         public Vote AddVote(Vote vote)
         {
@@ -42,9 +44,9 @@ namespace R8It_Domain.Services.Implementations
                 yield return retour;
             }
         }
-        public bool HasVoted(int userId, int uploadId)
+        public bool CanVote(int userId, int uploadId)
         {
-            return VoteRepository.GetVotes(uploadId).Where(v => v.Id == userId).FirstOrDefault() != null;
+            return (!(_uploadRepository.Get(uploadId).UserId == userId) && VoteRepository.GetVotes(uploadId).Where(v => v.UserId == userId).FirstOrDefault() == null) ;
         }
     }
 }

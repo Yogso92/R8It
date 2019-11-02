@@ -3,7 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { UploadModel } from 'src/app/models/upload';
 import { VoteService } from 'src/app/services/vote.service';
 import { RatingService } from 'src/app/services/rating.service';
-import { RatingType } from 'src/app/models/rating-type';
+import { RatingType } from 'src/app/models/rating-model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { VoteModel } from 'src/app/models/vote.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,12 +34,21 @@ export class VoteComponent implements OnInit {
     this._form = v;
   }
   
-  public get hasVoted() : Observable<boolean> {
-    console.log(this.hasVotedSubject.value)
-    return this.hasVotedSubject.asObservable();
+  public get canVote() : Observable<boolean> {
+    console.log(this.canVoteSubject.value)
+    return this.canVoteSubject.asObservable();
   }
+  
+  private _results : Array<VoteModel>;
+  public get results() : Array<VoteModel> {
+    return this._results;
+  }
+  public set results(v : Array<VoteModel>) {
+    this._results = v;
+  }
+  
 
-  private hasVotedSubject : BehaviorSubject<boolean>
+  private canVoteSubject : BehaviorSubject<boolean>
   
   
   
@@ -56,7 +65,7 @@ export class VoteComponent implements OnInit {
       id: ''
     });
     
-    this.hasVotedSubject = new BehaviorSubject<boolean>(false);
+    this.canVoteSubject = new BehaviorSubject<boolean>(false);
     
     //console.log(this.loginService.user)
     
@@ -67,14 +76,16 @@ export class VoteComponent implements OnInit {
     this.form.get('userId').setValue(this.loginService.user.id);
     this.form.get('uploadId').setValue(this.upload.id);
     this.form.get('id').setValue(0);
-    this.voteService.hasVoted(this.loginService.user.id, this.upload.id)
-                    .subscribe(data => {this.hasVotedSubject.next(data); console.log(data)});
+    this.voteService.canVote(this.loginService.user.id, this.upload.id)
+                    .subscribe(data => {this.canVoteSubject.next(data); console.log(data)});
     
     
   }
 
-  submitVote(vote : VoteModel) : Observable<Array<VoteModel>>{
-    return this.voteService.submit(vote);
+  submitVote(vote : VoteModel){
+    this.canVoteSubject.next(false);
+    vote.rateChoiceId = parseInt(vote.rateChoiceId.toString());
+    this.voteService.submit(vote).subscribe(data => this.results = data);
   }
 
 }

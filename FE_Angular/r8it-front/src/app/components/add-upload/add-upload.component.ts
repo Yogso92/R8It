@@ -4,7 +4,7 @@ import { UploadService } from 'src/app/services/upload.service';
 import { UploadModel } from 'src/app/models/upload';
 import { LoginService } from 'src/app/services/login.service';
 import { RatingService } from 'src/app/services/rating.service';
-import { RatingType } from 'src/app/models/rating-type';
+import { RatingType } from 'src/app/models/rating-model';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
@@ -69,6 +69,8 @@ export class AddUploadComponent implements OnInit {
   public set fileUploading(v : boolean) {
     this._fileUploading = v;
   }
+
+  public sending : boolean;
   
   
   
@@ -102,6 +104,7 @@ export class AddUploadComponent implements OnInit {
     this.categories = this.categoryService.GetAll();
   }
   submit(model : UploadModel){
+    this.sending = true;
     model.userId = this.loginService.user.id;
     model.uploadDate = new Date();
     model.anonymous = false;
@@ -111,7 +114,7 @@ export class AddUploadComponent implements OnInit {
     model.result = 0;
     model.limitDate = model.uploadDate;
     console.log("sending")
-    this.uploadService.insert(model).subscribe(data => console.log(data), error => console.log(error));
+    this.uploadService.insert(model).subscribe(data => this.sending=false, error => console.log(error));
     
     
   }
