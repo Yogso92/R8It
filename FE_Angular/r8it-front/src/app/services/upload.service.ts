@@ -25,7 +25,11 @@ export class UploadService  {
   }
   public getAllFromCategory(categoryId : number) : Observable<Array<UploadModel>>{
     const url : string = this.url + "/bycategory/"+categoryId.toString();
-    console.log(url);
+    
+    return this.http.get<Array<UploadModel>>(url);
+  }
+  public getAllFromUser(userId : number) : Observable<Array<UploadModel>>{
+    const url : string = this.url + "/byuser/"+userId.toString();
     
     return this.http.get<Array<UploadModel>>(url);
   }

@@ -1,0 +1,33 @@
+<div *ngIf = "categoryId !== null && categoryId !== undefined">
+    <div *ngIf="uploads !== undefined && uploads !== null" >
+        <nb-reveal-card *ngFor = "let upload of uploads | async">
+            <nb-card-front>
+                <nb-card status="primary">
+                    <nb-card-header>
+                        {{upload.context}}
+                    </nb-card-header>
+                    <nb-card-body class="alignvertical">
+                        <img class="preview" [src] = '"data:image/png;base64,"+upload.fileString'/>
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+                <nb-card status= "primary">
+                    <nb-card-header>
+                        Submit a vote
+                    </nb-card-header>
+                    <nb-card-body>
+                        <div *ngIf="upload != undefined">
+                            <app-vote [upload]="upload"></app-vote>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-back>
+        </nb-reveal-card>
+    </div>
+    <div *ngIf = "uploads === undefined || uploads === null">
+        <p>
+            uploads empty
+        </p>
+    </div>
+</div>

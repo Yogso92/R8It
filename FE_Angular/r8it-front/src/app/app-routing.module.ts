@@ -5,6 +5,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
 import { AddUploadComponent } from './components/add-upload/add-upload.component';
+import { UserBrowseComponent } from './components/user-browse/user-browse.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'browse/category/:categoryId',
     component: CategoryBrowseComponent
+  },
+  {
+    path : 'self', 
+    component : UserBrowseComponent
   }
 ];
 

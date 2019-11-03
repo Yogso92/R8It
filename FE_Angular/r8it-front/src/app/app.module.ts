@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CategoryBrowseComponent } from './components/category-browse/category-browse.component';
 import { AddUploadComponent } from './components/add-upload/add-upload.component';
 import { VoteComponent } from './components/vote/vote.component';
+import { UserBrowseComponent } from './components/user-browse/user-browse.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VoteComponent } from './components/vote/vote.component';
     RegisterComponent,
     CategoryBrowseComponent,
     AddUploadComponent,
-    VoteComponent
+    VoteComponent,
+    UserBrowseComponent
   ],
   imports: [
     BrowserModule,

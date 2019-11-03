@@ -20,17 +20,13 @@ namespace R8It_Api.Controllers
     public class UploadController : ControllerBase
     {
         private readonly IUploadService _uploadService;
-        public UploadController(IUploadService uploadService)
+        private readonly IVoteService _voteService;
+        public UploadController(IUploadService uploadService, IVoteService voteService)
         {
             _uploadService = uploadService;
+            _voteService = voteService;
         }
-
-        //[Authorize]
-        //[HttpGet("{n}")]
-        //public Upload Get(int n)
-        //{
-        //    return _uploadService.Get(n);
-        //}
+        
         [HttpGet("bycategory/{n}")]
         [Authorize]
         public IEnumerable<UploadModel> GetUploadsFromCategory(int n)
@@ -39,10 +35,12 @@ namespace R8It_Api.Controllers
             { 
                 UploadModel retour = s.Map<UploadModel>();
                 retour.FileString = Encoding.UTF8.GetString(retour.File);
+                retour.Result = _voteService.GetResult(retour.Id);
                 return retour;
             });
             return test;
         }
+
         [Authorize]
         [HttpPost]
         public bool Insert([FromBody] UploadModel model)
@@ -59,7 +57,21 @@ namespace R8It_Api.Controllers
             {
                 return false;
             }
-            
+        }
+
+        [HttpGet("byuser/{userId}")]
+        [Authorize]
+        
+        public IEnumerable<UploadModel> GetAllFromUser(int userId)
+        {
+            return _uploadService.GetAllFromUser(userId).Select(s =>
+            {
+                UploadModel retour = s.Map<UploadModel>();
+                retour.Result = _voteService.GetResult(retour.Id);
+                retour.FileString = Encoding.UTF8.GetString(s.File);
+
+                return retour;
+            });
         }
 
     }
