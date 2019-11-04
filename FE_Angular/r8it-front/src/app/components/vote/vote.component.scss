@@ -3,8 +3,12 @@
     display: flex;
     flex-flow: column;
     max-width: 90%; 
+    min-width: 80%;
     align-items: center;
     margin: auto;
+}
+nb-progress-bar{
+    min-width: 70%;
 }
 
 nb-select, button{

@@ -12,10 +12,8 @@ export class VoteService {
   private _endpoint : string = environment.apiurl+"/vote"
   constructor(private http : HttpClient) { }
 
-  public submit(vote : VoteModel) : Observable<Array<VoteModel>>{
-    console.log(vote);
-    
-    return this.http.post<Array<VoteModel>>(this._endpoint, vote)
+  public submit(vote : VoteModel) : Observable<number>{
+    return this.http.post<number>(this._endpoint, vote)
   }
   public canVote(userId : number, uploadId : number) : Observable<boolean>{
     const url : string = this._endpoint + "/canvote/"+userId.toString()+"/"+uploadId.toString();

@@ -31,7 +31,12 @@ namespace R8It_Domain.Services.Implementations
         public double GetResult(int uploadId) //returns average score in percent
         {
             IEnumerable<Vote> votes = GetVotes(uploadId);
-            return votes.Average(v => v.Rating.Value)/votes.Max(v => v.Rating.Value)*100;
+            double max = RateChoiceRepository.GetChoices(_uploadRepository.Get(uploadId).RatingTypeId).Max(item => item.Value);
+            if(votes.Count() > 0)
+            {
+                return votes.Average(v => v.Rating.Value) / max * 100;
+            }
+            return 0;
         }
 
         public IEnumerable<Vote> GetVotes(int uploadId)

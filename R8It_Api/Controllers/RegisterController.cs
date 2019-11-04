@@ -40,7 +40,7 @@ namespace R8It_Api.Controllers
                                                         .Map<BaseUserModel>();
                     result = this.Ok(body);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     result = this.ValidationProblem();
                 }

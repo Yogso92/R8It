@@ -34,6 +34,7 @@ export class UserBrowseComponent implements OnInit {
     }
 
     this.uploads = this.uploadService.getAllFromUser(this.userId);
+    this.uploadService.getAllFromUser(this.userId).subscribe(data => console.log(data));
   }
 
 }

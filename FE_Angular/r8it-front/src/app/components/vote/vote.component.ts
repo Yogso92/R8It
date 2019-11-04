@@ -46,6 +46,17 @@ export class VoteComponent implements OnInit {
   public set results(v : Array<VoteModel>) {
     this._results = v;
   }
+  get status() {
+    if (this.upload.result <= 25) {
+      return 'danger';
+    } else if (this.upload.result <= 50) {
+      return 'warning';
+    } else if (this.upload.result <= 75) {
+      return 'info';
+    } else {
+      return 'success';
+    }
+  }
   
 
   private canVoteSubject : BehaviorSubject<boolean>
@@ -85,7 +96,7 @@ export class VoteComponent implements OnInit {
   submitVote(vote : VoteModel){
     this.canVoteSubject.next(false);
     vote.rateChoiceId = parseInt(vote.rateChoiceId.toString());
-    this.voteService.submit(vote).subscribe(data => this.results = data);
+    this.voteService.submit(vote).subscribe(data => this.upload.result = data);
   }
 
 }

@@ -22,10 +22,10 @@ namespace R8It_Api.Controllers
             _voteService = voteService;
         }
         [HttpPost]
-        public IEnumerable<VoteModel> Submit([FromBody]VoteModel vote)
+        public double Submit([FromBody]VoteModel vote)
         {
             _voteService.AddVote(vote.Map<Vote>());
-            return _voteService.GetVotes(vote.UploadId).Select(v => v.Map<VoteModel>());
+            return _voteService.GetResult(vote.UploadId);
         }
         [HttpGet("canvote/{userId}/{uploadId}")]
         public bool CanVote(int userId, int uploadId)

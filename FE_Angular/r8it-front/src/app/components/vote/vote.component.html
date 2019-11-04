@@ -6,4 +6,8 @@
     </nb-select>
     <button nbButton [disabled]="!form.valid" (click)="submitVote(form.value)">Vote</button>
 </form>
-<div *ngIf="!(canVote |async)" >Cannot vote</div>
+<div *ngIf="!(canVote |async)" class = "alignvertical">
+    <h3>Results: </h3>
+    <nb-progress-bar [value] = "upload.result" [status] = "status"></nb-progress-bar>
+    <h4>{{upload.result}} %</h4>
+</div>

@@ -1,4 +1,4 @@
-<div *ngIf = "categoryId !== null && categoryId !== undefined">
+<div *ngIf = "userId !== null && userId !== undefined">
     <div *ngIf="uploads !== undefined && uploads !== null" >
         <nb-reveal-card *ngFor = "let upload of uploads | async">
             <nb-card-front>
@@ -17,9 +17,7 @@
                         Submit a vote
                     </nb-card-header>
                     <nb-card-body>
-                        <div *ngIf="upload != undefined">
-                            <app-vote [upload]="upload"></app-vote>
-                        </div>
+                        <app-vote [upload]="upload" *ngIf="upload != undefined"></app-vote>
                     </nb-card-body>
                 </nb-card>
             </nb-card-back>

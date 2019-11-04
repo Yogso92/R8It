@@ -86,8 +86,8 @@ namespace R8It_Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Environment.SetEnvironmentVariable("connectionString", @"Data Source=LENOVO-3373;Initial Catalog=R8It;User ID=sa; Password=test1234=");
-            //Environment.SetEnvironmentVariable("connectionString", @"Data Source=TECHNOBEL\;Initial Catalog=R8It;Persist Security Info=True;User ID=sa;Password=test1234=");
+            //Environment.SetEnvironmentVariable("connectionString", @"Data Source=LENOVO-3373;Initial Catalog=R8It;User ID=sa; Password=test1234=");
+            Environment.SetEnvironmentVariable("connectionString", @"Data Source=TECHNOBEL\;Initial Catalog=R8It;Persist Security Info=True;User ID=sa;Password=test1234=");
             //Environment.SetEnvironmentVariable("connectionString", @"Data Source=DESKTOP-J77BETP;Initial Catalog=R8It;Integrated Security=True");
             if (env.IsDevelopment())
             {

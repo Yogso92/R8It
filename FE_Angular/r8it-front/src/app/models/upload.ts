@@ -5,12 +5,11 @@ export interface UploadModel
     context : string,
     userId? : number,
     categoryId : number,
-    file?: any,
     ratingTypeId : number,
     anonymous? : boolean,
     active? : boolean,
     deleted? : boolean,
-    result? : number,
+    result : number,
     fileString : string,
     limitDate? : Date
 }
