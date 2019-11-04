@@ -9,7 +9,8 @@ export interface UploadModel
     anonymous? : boolean,
     active? : boolean,
     deleted? : boolean,
-    result : number,
+    result? : number,
     fileString : string,
-    limitDate? : Date
+    limitDate? : Date,
+    file? : any
 }

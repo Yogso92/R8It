@@ -35,7 +35,6 @@ export class VoteComponent implements OnInit {
   }
   
   public get canVote() : Observable<boolean> {
-    console.log(this.canVoteSubject.value)
     return this.canVoteSubject.asObservable();
   }
   
@@ -88,7 +87,7 @@ export class VoteComponent implements OnInit {
     this.form.get('uploadId').setValue(this.upload.id);
     this.form.get('id').setValue(0);
     this.voteService.canVote(this.loginService.user.id, this.upload.id)
-                    .subscribe(data => {this.canVoteSubject.next(data); console.log(data)});
+                    .subscribe(data => {this.canVoteSubject.next(data)});
     
     
   }

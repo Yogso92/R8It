@@ -23,6 +23,7 @@ export class AppComponent {
   
   constructor(private loginService : LoginService){
     this.isLogged = this.loginService.isLogged;
+    localStorage.removeItem('id_token');
   }
 
 }

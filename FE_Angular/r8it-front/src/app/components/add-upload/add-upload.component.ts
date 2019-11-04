@@ -113,8 +113,8 @@ export class AddUploadComponent implements OnInit {
     model.active = true;
     model.result = 0;
     model.limitDate = model.uploadDate;
-    console.log("sending")
-    this.uploadService.insert(model).subscribe(data => this.sending=false, error => console.log(error));
+    
+    this.uploadService.insert(model).subscribe(data => this.router.navigate(['/self']), error => console.log(error));
     
     
   }

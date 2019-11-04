@@ -1,6 +1,7 @@
 <nb-layout>
 
   <nb-layout-header fixed>
+    <h3 class = "left">Logo</h3>
     <app-login class = "right" *ngIf="!(isLogged | async)"></app-login>
     <app-logged-topbar class="right" *ngIf="isLogged | async"></app-logged-topbar>
   <!-- Insert header here -->

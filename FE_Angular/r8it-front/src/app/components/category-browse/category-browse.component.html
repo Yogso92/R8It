@@ -1,5 +1,5 @@
 <div *ngIf = "categoryId !== null && categoryId !== undefined">
-    <div *ngIf="uploads !== undefined && uploads !== null" >
+    <div *ngIf="(uploads | async) != null" >
         <nb-reveal-card *ngFor = "let upload of uploads | async">
             <nb-card-front>
                 <nb-card status="primary">
@@ -23,7 +23,7 @@
             </nb-card-back>
         </nb-reveal-card>
     </div>
-    <div *ngIf = "(uploads | async).length === 0 ">
+    <div *ngIf = "(uploads | async)?.length === 0 ">
         <p>
             uploads empty
         </p>
